@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über Uns - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        .tab-content {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <i data-lucide="flame" class="text-fire h-10 w-10 transition-transform group-hover:scale-110"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-serif font-bold text-xl text-gray-900 leading-none uppercase">Jugendfeuerwehr</span>
+                        <span
+                            class="font-sans text-sm text-gray-500 font-medium uppercase">Linkenheim-Hochstetten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-fire transition-colors">Startseite</a>
+                    <a href="aktuelles.html" class="text-gray-600 hover:text-fire transition-colors">Aktuelles</a>
+                    <a href="about.html" class="text-fire font-semibold">Über uns</a>
+                    <a href="dienstplan.html" class="text-gray-600 hover:text-fire transition-colors">Dienstplan</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-fire transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn"
+                    onclick="document.querySelector('.nav-links').classList.toggle('hidden')">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Panel -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 nav-links">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Startseite</a>
+                <a href="aktuelles.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Aktuelles</a>
+                <a href="about.html" class="block px-3 py-2 text-fire font-semibold bg-red-50 rounded-md">Über uns</a>
+                <a href="dienstplan.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Dienstplan</a>
+                <a href="faq.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <section class="bg-soot text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="font-serif font-bold text-4xl mb-4">Unsere Feuerwehr</h1>
+                <p class="text-xl text-gray-400">Technik, Mannschaft und das Feuerwehrhaus</p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-12">
+
+            <!-- Animated Tab Selector -->
+            <div class="flex justify-center mb-12">
+                <div class="relative bg-gray-200 p-1.5 rounded-xl flex w-full max-w-2xl mx-auto shadow-inner">
+                    <!-- Sliding Background Pill -->
+                    <div id="tab-pill"
+                        class="absolute top-1.5 bottom-1.5 left-0 bg-white rounded-lg shadow-sm transition-all duration-300 ease-out z-0">
+                    </div>
+
+                    <!-- Buttons -->
+                    <button onclick="switchTab('feuerwehrhaus', this)" id="btn-feuerwehrhaus"
+                        class="tab-btn relative z-10 flex-1 px-2 py-2.5 rounded-lg text-sm font-bold text-fire transition-colors duration-300">
+                        Feuerwehrhaus
+                    </button>
+                    <button onclick="switchTab('fahrzeuge', this)" id="btn-fahrzeuge"
+                        class="tab-btn relative z-10 flex-1 px-2 py-2.5 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-800 transition-colors duration-300">
+                        Fahrzeuge
+                    </button>
+                    <button onclick="switchTab('team', this)" id="btn-team"
+                        class="tab-btn relative z-10 flex-1 px-2 py-2.5 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-800 transition-colors duration-300">
+                        Team
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feuerwehrhaus Section -->
+            <div id="content-feuerwehrhaus" class="tab-content">
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <i data-lucide="home" class="text-fire w-10 h-10"></i>
+                            <h2 class="font-serif font-bold text-4xl text-gray-900">Feuerwehrhaus</h2>
+                        </div>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                            Mehr als nur ein Gebäude – unser zweites Zuhause. Hier bereiten wir uns vor, hier lernen
+                            wir,
+                            und hier wachsen wir als Team zusammen.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Fahrzeughalle -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="truck"
+                                        class="w-8 h-8 text-fire group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Fahrzeughalle</h3>
+                                    <p class="text-gray-600">
+                                        Das Herzstück. Hier stehen unsere Fahrzeuge bereit für den nächsten Einsatz. Der
+                                        Ort, an dem Technik auf Leidenschaft trifft.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Jugendraum -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="gamepad-2"
+                                        class="w-8 h-8 text-fire group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Jugendraum</h3>
+                                    <p class="text-gray-600">
+                                        Unser Rückzugsort. Hier haben wir Spaß, spielen Kicker, schauen Filme und
+                                        verbringen
+                                        einfach Zeit miteinander.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Umkleide -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="shirt"
+                                        class="w-8 h-8 text-fire group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Umkleide</h3>
+                                    <p class="text-gray-600">
+                                        Hier beginnt der Dienst. Jeder hat seinen eigenen Spind für die persönliche
+                                        Schutzausrüstung. Aus Jugendlichen werden Feuerwehrleute.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Schulungsraum -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="graduation-cap"
+                                        class="w-8 h-8 text-fire group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Schulungsraum</h3>
+                                    <p class="text-gray-600">
+                                        Wissen ist Macht. Hier lernen wir die Theorie, planen Übungen und besprechen
+                                        wichtige Themen für unsere Sicherheit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fahrzeuge Section -->
+            <div id="content-fahrzeuge" class="tab-content hidden">
+                <div>
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="truck" class="text-fire w-8 h-8"></i>
+                        <h2 class="font-serif font-bold text-3xl text-gray-900">Unsere Fahrzeuge</h2>
+                    </div>
+
+                    <!-- Jugendfeuerwehr Fahrzeuge (Highlighted) -->
+                    <div class="mb-12">
+                        <h3
+                            class="font-serif font-bold text-2xl text-fire mb-6 border-b-2 border-fire pb-2 flex items-center gap-2">
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i> Jugendfeuerwehr Fahrzeuge
+                        </h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- LH 41 -->
+                            <div
+                                class="bg-gradient-to-br from-white to-red-50 rounded-xl shadow-lg hover:shadow-xl transition-all p-8 border-2 border-fire relative overflow-hidden group">
+                                <div
+                                    class="absolute top-0 right-0 bg-fire text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+                                    JUGENDFEUERWEHR</div>
+                                <div class="flex flex-col gap-6">
+                                    <div
+                                        class="aspect-[3/2] w-full bg-white rounded-lg border-2 border-red-100 flex items-center justify-center overflow-hidden relative group-hover:border-fire transition-colors">
+                                        <i data-lucide="truck" class="text-fire/20 w-16 h-16 absolute"></i>
+                                        <img src="img/lh41ad.jpg" alt="LH 41"
+                                            class="w-full h-full object-cover relative z-10 opacity-0"
+                                            onload="this.classList.remove('opacity-0')">
+                                        <span class="text-gray-400 text-sm absolute bottom-4">Bild folgt</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-serif font-bold text-2xl text-gray-900 mb-2">
+                                            Löschgruppenfahrzeug
+                                        </h4>
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="font-bold text-xl text-gray-700">LF</span>
+                                            <span
+                                                class="bg-fire text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm">LH
+                                                41</span>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-gray-600 flex items-center gap-2 text-sm">
+                                                <i data-lucide="users" class="text-fire w-4 h-4"></i>
+                                                <span class="font-medium">Besatzung:</span> 1/8/9
+                                            </p>
+                                            <p class="text-gray-600 flex items-center gap-2 text-sm">
+                                                <i data-lucide="info" class="text-fire w-4 h-4"></i>
+                                                <span>Speziell für die <strong>Jugendarbeit</strong>.</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TSA -->
+                            <div
+                                class="bg-gradient-to-br from-white to-red-50 rounded-xl shadow-lg hover:shadow-xl transition-all p-8 border-2 border-fire relative overflow-hidden group">
+                                <div
+                                    class="absolute top-0 right-0 bg-fire text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+                                    JUGENDFEUERWEHR</div>
+                                <div class="flex flex-col gap-6">
+                                    <div
+                                        class="aspect-[3/2] w-full bg-white rounded-lg border-2 border-red-100 flex items-center justify-center overflow-hidden relative group-hover:border-fire transition-colors">
+                                        <i data-lucide="package" class="text-fire/20 w-16 h-16 absolute"></i>
+                                        <img src="img/fwa_tsa.jpg" alt="TSA"
+                                            class="w-full h-full object-cover relative z-10 opacity-0"
+                                            onload="this.classList.remove('opacity-0')">
+                                        <span class="text-gray-400 text-sm absolute bottom-4">Bild folgt</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-serif font-bold text-2xl text-gray-900 mb-2">
+                                            Tragkraftspritzenanhänger</h4>
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="font-bold text-xl text-gray-700">TSA</span>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-gray-600 flex items-center gap-2 text-sm">
+                                                <i data-lucide="info" class="text-fire w-4 h-4"></i>
+                                                <span>Unser Übungsanhänger für den Löschangriff.</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fahrzeuge -->
+                    <h3 class="font-serif font-bold text-2xl text-gray-800 mb-6 border-b-2 border-gray-100 pb-2">
+                        Einsatzfahrzeuge</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <!-- LF 16 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="truck" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh44.jpg" alt="LH 44"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Löschgruppenfahrzeug</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">LF 16</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 44</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/8/9
+                            </p>
+                        </div>
+
+                        <!-- DLA (K) 23/12 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="arrow-up-circle" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh33.jpg" alt="LH 33"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Drehleiter mit Korb</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">DLA (K) 23/12</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 33</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/2/3
+                            </p>
+                        </div>
+
+                        <!-- TLF 16/25 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="truck" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh23.jpg" alt="LH 23"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Tanklöschgruppenfahrzeug</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">TLF 16/25</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 23</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/8/9
+                            </p>
+                        </div>
+
+                        <!-- GW-S -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="truck" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh59.jpg" alt="LH 59"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Gerätewagen-Sonder</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">GW-S</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 59</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/5/6
+                            </p>
+                        </div>
+
+                        <!-- TLF 8/18 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="truck" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh21.jpg" alt="LH 21"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Tanklöschfahrzeug</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">TLF 8/18</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 21</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/2/3
+                            </p>
+                        </div>
+
+                        <!-- MLF -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="truck" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh40.jpg" alt="LH 40"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Mittleres Löschfahrzeug</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">MLF</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 40</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/5/6
+                            </p>
+                        </div>
+
+                        <!-- MTW 1 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="users" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="" alt="LH 19-1" class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Mannschaftstransportwagen</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">MTW</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 19-1</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/8/9
+                            </p>
+                        </div>
+
+                        <!-- MTW 2 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="users" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/lh192.jpg" alt="LH 19-2"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Mannschaftstransportwagen</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">MTW</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 19-2</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i> Besatzung: 1/8/9
+                            </p>
+                        </div>
+
+                        <!-- KdoW -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-fire group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="car" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="" alt="LH 10" class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Kommandowagen</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">KdoW</span>
+                                <span class="bg-red-100 text-fire text-xs font-bold px-2 py-1 rounded">LH 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boote -->
+                    <h3 class="font-serif font-bold text-2xl text-gray-800 mb-6 border-b-2 border-gray-100 pb-2">Boote
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <!-- MZB -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-blue-500 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="anchor" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="" alt="LH 79" class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Mehrzweckboot</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">MZB</span>
+                                <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded">LH 79</span>
+                            </div>
+                        </div>
+
+                        <!-- RTB 1 -->
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-blue-500 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="anchor" class="text-gray-300 w-12 h-12 absolute"></i>
+                                <img src="img/rtb.jpg" alt="RTB 1"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Rettungsboot</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-700">RTB 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anhänger -->
+                    <h3 class="font-serif font-bold text-2xl text-gray-800 mb-6 border-b-2 border-gray-100 pb-2">
+                        Anhänger
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-gray-400 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="package" class="text-gray-300 w-10 h-10 absolute"></i>
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Lichtmastanhänger</h4>
+                            <p class="text-sm text-gray-600">LiMa</p>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-gray-400 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="package" class="text-gray-300 w-10 h-10 absolute"></i>
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Straßenbahnunfall</h4>
+                            <p class="text-sm text-gray-600">Anhänger</p>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border-l-4 border-gray-400 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="package" class="text-gray-300 w-10 h-10 absolute"></i>
+                                <img src="img/fwa_hygiene.jpg" alt="Hygiene Anhänger"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">Hygiene</h4>
+                            <p class="text-sm text-gray-600">Anhänger</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray-600 italic mt-[-2rem] mb-12">Sowie weitere Anhänger für Boote und
+                        PKW
+                        Transportanhänger.</p>
+
+                    <!-- Außer Dienst -->
+                    <h3
+                        class="font-serif font-bold text-2xl text-gray-800 mb-6 border-b-2 border-gray-100 pb-2 opacity-75">
+                        Außer Dienst</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75">
+                        <div class="bg-gray-50 rounded-xl shadow-sm p-6 border border-gray-200 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="arrow-up-circle" class="text-gray-400 w-10 h-10 absolute"></i>
+                                <img src="img/lh33ad.jpg" alt="LH 33 AD"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-700 mb-1">Drehleiter mit Korb</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-600">DLA (K)</span>
+                                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded">LH 33</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl shadow-sm p-6 border border-gray-200 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="car" class="text-gray-400 w-10 h-10 absolute"></i>
+                                <img src="img/lh11ad.jpg" alt="LH 11 AD"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-700 mb-1">Führungskraftwagen</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-600">FüKW</span>
+                                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded">LH 11</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl shadow-sm p-6 border border-gray-200 group">
+                            <div
+                                class="aspect-[3/2] w-full bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
+                                <i data-lucide="anchor" class="text-gray-400 w-10 h-10 absolute"></i>
+                                <img src="img/mzbad.jpg" alt="LH 79 AD"
+                                    class="w-full h-full object-cover relative z-10 opacity-0"
+                                    onload="this.classList.remove('opacity-0')">
+                            </div>
+                            <h4 class="font-serif font-bold text-lg text-gray-700 mb-1">Mehrzweckboot</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-gray-600">MZB</span>
+                                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded">LH 79</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section (Empty) -->
+            <div id="content-team" class="tab-content hidden">
+                <div
+                    class="flex flex-col items-center justify-center py-24 text-center bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
+                    <div class="bg-white p-4 rounded-full shadow-sm mb-4">
+                        <i data-lucide="users" class="w-12 h-12 text-gray-300"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-2xl text-gray-400 mb-2">Unser Team</h3>
+                    <p class="text-gray-500 max-w-md">Dieser Bereich befindet sich noch im Aufbau. Informationen über
+                        unsere Mannschaft folgen in Kürze.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-soot text-white py-12 border-t-4 border-fire">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flame" class="text-fire h-6 w-6"></i>
+                        <span class="font-serif font-bold text-lg">JF Linkenheim-Hochstetten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Die Jugendfeuerwehr ist die Jugendabteilung der Freiwilligen Feuerwehr. Wir bereiten Jugendliche
+                        auf den aktiven Dienst vor.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-fire transition-colors" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Kontakt</h4>
+                    <p class="text-gray-400 text-sm mb-2">Feuerwehrhaus Linkenheim</p>
+                    <p class="text-gray-400 text-sm">Schulstraße 123<br>76351 Linkenheim-Hochstetten</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="impressum.html" class="hover:text-fire transition-colors">Impressum</a></li>
+                        <li><a href="datenschutz.html" class="hover:text-fire transition-colors">Datenschutz</a></li>
+                        <li><a href="rechtliches.html" class="hover:text-fire transition-colors">Rechtliches</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                &copy; 2024 Jugendfeuerwehr Linkenheim-Hochstetten. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Tab Switching Logic -->
+    <script>
+        let activeTabId = 'feuerwehrhaus';
+
+        function switchTab(tabId, btnElement) {
+            activeTabId = tabId;
+
+            // 1. Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // 2. Show the selected tab content
+            const selectedContent = document.getElementById('content-' + tabId);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+
+            // 3. Handle Button Styling
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-fire');
+                btn.classList.add('text-gray-600');
+            });
+
+            // If no button element passed (e.g. on resize/init), find it
+            if (!btnElement) {
+                btnElement = document.getElementById('btn-' + tabId);
+            }
+
+            if (btnElement) {
+                btnElement.classList.remove('text-gray-600');
+                btnElement.classList.add('text-fire');
+
+                // 4. Animate the Sliding Pill
+                const pill = document.getElementById('tab-pill');
+                pill.style.width = btnElement.offsetWidth + 'px';
+                pill.style.transform = `translateX(${btnElement.offsetLeft}px)`;
+            }
+
+            // Re-initialize Lucide icons for new content
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+            // Trigger click on default tab to set initial pill position
+            switchTab('feuerwehrhaus');
+        });
+
+        // Update pill position on resize
+        window.addEventListener('resize', () => {
+            switchTab(activeTabId);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktuelles - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <i data-lucide="flame" class="text-fire h-10 w-10 transition-transform group-hover:scale-110"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-serif font-bold text-xl text-gray-900 leading-none uppercase">Jugendfeuerwehr</span>
+                        <span
+                            class="font-sans text-sm text-gray-500 font-medium uppercase">Linkenheim-Hochstetten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-fire transition-colors">Startseite</a>
+                    <a href="aktuelles.html" class="text-fire font-semibold">Aktuelles</a>
+                    <a href="about.html" class="text-gray-600 hover:text-fire transition-colors">Über uns</a>
+                    <a href="dienstplan.html" class="text-gray-600 hover:text-fire transition-colors">Dienstplan</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-fire transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Panel -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 nav-links">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Startseite</a>
+                <a href="aktuelles.html"
+                    class="block px-3 py-2 text-fire font-semibold bg-red-50 rounded-md">Aktuelles</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Über uns</a>
+                <a href="dienstplan.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Dienstplan</a>
+                <a href="faq.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <section class="bg-soot text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="font-serif font-bold text-4xl mb-4">Aktuelles</h1>
+                <p class="text-xl text-gray-400">Neuigkeiten und Berichte</p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Content will be loaded via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- News Modal -->
+    <div id="news-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+
+        <!-- Modal Panel -->
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 scale-95"
+                    id="modal-panel">
+
+                    <!-- Close Button -->
+                    <button type="button"
+                        class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 z-10 bg-white/80 rounded-full p-1"
+                        id="modal-close">
+                        <span class="sr-only">Schließen</span>
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+
+                    <!-- Image -->
+                    <div class="h-64 w-full bg-gray-200 overflow-hidden">
+                        <img id="modal-image" src="" alt="" class="h-full w-full object-cover">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="px-6 py-6 sm:px-8">
+                        <div class="flex items-center gap-2 text-sm text-fire font-semibold mb-3">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            <span id="modal-date"></span>
+                        </div>
+
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6" id="modal-title"></h3>
+
+                        <div class="prose prose-red max-w-none text-gray-600" id="modal-content">
+                            <!-- Full content goes here -->
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="bg-gray-50 px-6 py-4 sm:px-8 sm:flex sm:flex-row-reverse">
+                        <button type="button"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                            id="modal-close-btn">
+                            Schließen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-soot text-white py-12 border-t-4 border-fire">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flame" class="text-fire h-6 w-6"></i>
+                        <span class="font-serif font-bold text-lg">JF Linkenheim-Hochstetten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Die Jugendfeuerwehr ist die Jugendabteilung der Freiwilligen Feuerwehr. Wir bereiten Jugendliche
+                        auf den aktiven Dienst vor.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-fire transition-colors" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Kontakt</h4>
+                    <p class="text-gray-400 text-sm mb-2">Feuerwehrhaus Linkenheim</p>
+                    <p class="text-gray-400 text-sm">Schulstraße 123<br>76351 Linkenheim-Hochstetten</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="impressum.html" class="hover:text-fire transition-colors">Impressum</a></li>
+                        <li><a href="datenschutz.html" class="hover:text-fire transition-colors">Datenschutz</a></li>
+                        <li><a href="rechtliches.html" class="hover:text-fire transition-colors">Rechtliches</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                &copy; 2024 Jugendfeuerwehr Linkenheim-Hochstetten. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('news-grid');
+            const modal = document.getElementById('news-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalPanel = document.getElementById('modal-panel');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDate = document.getElementById('modal-date');
+            const modalImage = document.getElementById('modal-image');
+            const modalContent = document.getElementById('modal-content');
+            const closeBtns = [document.getElementById('modal-close'), document.getElementById('modal-close-btn')];
+
+            if (!window.siteData || !window.siteData.news) return;
+
+            // Sort by date desc
+            const sortedNews = [...window.siteData.news].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Render Grid
+            sortedNews.forEach(item => {
+                const article = document.createElement('article');
+                article.className = 'bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-b-4 border-transparent hover:border-fire overflow-hidden group flex flex-col h-full';
+
+                // Format date
+                const dateObj = new Date(item.date);
+                const dateStr = dateObj.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                article.innerHTML = `
+                    <div class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden shrink-0">
+                        ${item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">` : `<i data-lucide="image" class="text-gray-400 w-12 h-12"></i>`}
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            <span>${dateStr}</span>
+                        </div>
+                        <h2 class="font-serif font-bold text-xl text-gray-900 mb-3 group-hover:text-fire transition-colors">
+                            ${item.title}
+                        </h2>
+                        <p class="text-gray-600 mb-4 line-clamp-3 flex-grow">
+                            ${item.excerpt}
+                        </p>
+                        <button class="read-more-btn inline-flex items-center text-fire font-semibold hover:text-fire-dark group-hover:translate-x-1 transition-transform mt-auto" data-id="${item.id}">
+                            Weiterlesen <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(article);
+            });
+
+            if (window.lucide) lucide.createIcons();
+
+            // Modal Logic
+            const openModal = (item) => {
+                const dateObj = new Date(item.date);
+                const dateStr = dateObj.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                modalTitle.textContent = item.title;
+                modalDate.textContent = dateStr;
+                modalImage.src = item.image || '';
+                modalContent.innerHTML = item.content || item.excerpt; // Fallback to excerpt if no content
+
+                modal.classList.remove('hidden');
+                // Animate in
+                requestAnimationFrame(() => {
+                    modalBackdrop.classList.remove('opacity-0');
+                    modalPanel.classList.remove('opacity-0', 'scale-95');
+                    modalPanel.classList.add('opacity-100', 'scale-100');
+                });
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            };
+
+            const closeModal = () => {
+                modalBackdrop.classList.add('opacity-0');
+                modalPanel.classList.remove('opacity-100', 'scale-100');
+                modalPanel.classList.add('opacity-0', 'scale-95');
+
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+
+            // Event Delegation for "Weiterlesen" buttons
+            grid.addEventListener('click', (e) => {
+                const btn = e.target.closest('.read-more-btn');
+                if (btn) {
+                    e.preventDefault();
+                    const id = parseInt(btn.dataset.id);
+                    const item = sortedNews.find(n => n.id === id);
+                    if (item) openModal(item);
+                }
+            });
+
+            // Close handlers
+            closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+            modalBackdrop.addEventListener('click', closeModal);
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

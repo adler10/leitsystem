@@ -1,405 +1,255 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Einsatzleitsystem der Feuerwehr</title>
-    
-    <!-- Tailwind CSS CDN -->
+    <title>Jugendfeuerwehr Linkenheim-Hochstetten</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Leaflet Map Library -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1555601568-c916f54b1985?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="flex flex-col md:flex-row h-screen">
-        <!-- Sidebar -->
-        <div id="sidebar-container" class="w-full md:w-1/3 bg-white p-4 overflow-y-auto shadow-lg">
-            
-            <!-- HEADER WITH UNDO BUTTON -->
-            <div class="flex justify-between items-center mb-4">
-                <h1 class="text-2xl font-bold text-red-700">Lokale Einsatzkonsole</h1>
-                <button id="undo-btn" class="flex items-center space-x-1 bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-400 text-gray-800 disabled:text-white font-bold py-1 px-2 rounded transition duration-150 text-sm" disabled>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="M15.312 8.412a1.002 1.002 0 0 1 .634.341c.288.354.341.854.148 1.256l-1.049 2.098a.75.75 0 0 0 1.295.648l1.049-2.098a2.502 2.502 0 0 0-.154-4.814 1 1 0 0 1-.692-.98 4.002 4.002 0 0 0-4.001-3.655 1 1 0 0 1-.996-1.004c0-.555-.444-1-1-1a1 1 0 0 1-1.004-.996A6.002 6.002 0 0 1 1.7 8.356a.75.75 0 0 0-.256.452l-.63 1.89c-.19.569.21.992.746.857l2.128-.532a.75.75 0 0 0 .584-.712c0-.398-.242-.71-.564-.812a4.002 4.002 0 0 0-.001-.001 1 1 0 0 1 1.004-.996c.555 0 1 .444 1 1a1 1 0 0 1-.996 1.004c-.001 0-.002 0-.003-.001h.001a2.502 2.502 0 0 0 2.501 2.396 1 1 0 0 1 .96.992 4.002 4.002 0 0 0 3.737 4.08 1 1 0 0 1 .96.992 4.002 4.002 0 0 0 2.825-1.127 1 1 0 0 1 1.414 1.414 6.002 6.002 0 0 1-4.239 1.693 1 1 0 0 1-.96-1.004 4.002 4.002 0 0 0-4.001-3.655 1 1 0 0 1-.996-1.004c0-.555-.444-1-1-1a1 1 0 0 1-1.004-.996A6.002 6.002 0 0 1 15.312 8.412Z" clip-rule="evenodd" />
-                    </svg>
-                    <span>Rückgängig</span>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <i data-lucide="flame" class="text-fire h-10 w-10 transition-transform group-hover:scale-110"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-serif font-bold text-xl text-gray-900 leading-none uppercase">Jugendfeuerwehr</span>
+                        <span
+                            class="font-sans text-sm text-gray-500 font-medium uppercase">Linkenheim-Hochstetten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-fire font-semibold">Startseite</a>
+                    <a href="aktuelles.html" class="text-gray-600 hover:text-fire transition-colors">Aktuelles</a>
+                    <a href="about.html" class="text-gray-600 hover:text-fire transition-colors">Über uns</a>
+                    <a href="dienstplan.html" class="text-gray-600 hover:text-fire transition-colors">Dienstplan</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-fire transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
                 </button>
-            </div>
-            <!-- END HEADER WITH UNDO BUTTON -->
-
-            <!-- Status Indicator -->
-            <div id="status-indicator" class="text-sm p-2 mb-4 rounded text-center font-medium transition duration-300 bg-green-100 text-green-700">Online: Adresssuche aktiv</div>
-            
-            <!-- EA Management Button -->
-            <button type="button" id="manage-ea-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded w-full transition duration-150 mb-4">
-                Einsatzabschnitte verwalten
-            </button>
-
-            <!-- Button to open Incident Creation Modal -->
-            <button type="button" id="open-create-incident-modal-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full transition duration-150 mb-4">
-                Neuen Einsatz erstellen
-            </button>
-
-            <hr class="my-4">
-
-            <!-- Incident List (Active) -->
-            <div>
-                <!-- Incident Sort Bar -->
-                <div class="mb-3">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Sortieren nach:</label>
-                    <div id="sort-bar" class="flex w-full rounded-md shadow-sm" role="group">
-                        <button type-button" data-sort="createdAt" class="sort-btn flex-1 py-1 px-2 text-xs font-medium rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 bg-indigo-600 text-white">
-                            Zeit
-                        </button>
-                        <button type-button" data-sort="keyword" class="sort-btn flex-1 py-1 px-2 text-xs font-medium border-t border-b border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 bg-white text-gray-700">
-                            Stichwort
-                        </button>
-                        <button type-button" data-sort="status" class="sort-btn flex-1 py-1 px-2 text-xs font-medium border-t border-b border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 bg-white text-gray-700">
-                            Status
-                        </button>
-                        <button type-button" data-sort="ea" class="sort-btn flex-1 py-1 px-2 text-xs font-medium rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 bg-white text-gray-700">
-                            EA
-                        </button>
-                    </div>
-                </div>
-                <!-- Active Incidents Toggle Button -->
-                <button id="active-toggle-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-bold py-2 px-4 rounded w-full transition duration-150 flex justify-between items-center mb-3">
-                    Aktive Einsätze (0) ▼
-                </button>
-                <div id="incident-list" class="space-y-3">
-                    <!-- Active incidents will be dynamically inserted her -->
-                </div>
-            </div>
-
-            <hr class="my-4">
-
-            <!-- Completed Incidents Section (Collapsible) -->
-            <button id="completed-toggle-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-bold py-2 px-4 rounded w-full transition duration-150 flex justify-between items-center">
-                Abgeschlossene Einsätze (0) ▼
-            </button>
-            <div id="completed-incident-list" class="space-y-3 mt-3 hidden">
-                <!-- Completed incidents will be dynamically inserted here -->
-            </div>
-
-            <!-- End Shift Button -->
-            <hr class="my-4">
-            <button id="end-shift-btn" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded w-full transition duration-150">
-                (Zwischen-) Bericht erstellen
-            </button>
-
-
-            <p class="text-xs text-gray-500 mt-4 text-center">Daten werden lokal im Browser gespeichert.</p>
-        </div>
-
-        <!-- Map -->
-        <div class="w-full md:w-2/3 h-64 md:h-full" id="map"></div>
-    </div>
-
-    <!-- MODALS AND OVERLAYS -->
-    
-    <!-- Offline Overlay -->
-    <div id="offline-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4 sm:p-8 hidden">
-        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <div class="flex-shrink-0 text-center mb-4">
-                <svg class="w-12 h-12 sm:w-16 sm:h-16 text-red-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                </svg>
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">VERBINDUNG VERLOREN</h2>
-                <p class="text-base sm:text-lg font-medium text-gray-700 mb-4">SAFE-MODUS AKTIV</p>
-                <p class="text-xs sm:text-sm text-gray-600">Alle Eingaben sind gesperrt. Daten zur manuellen Übertragung:</p>
-            </div>
-            
-            <div id="offline-data-report" class="flex-grow overflow-y-auto bg-gray-50 p-4 rounded border border-gray-300 space-y-6">
-                
-                <!-- EA List -->
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2 pb-1 border-b border-gray-300">Einsatzabschnitte (EA)</h3>
-                    <div id="offline-ea-list" class="space-y-2">
-                        <!-- EAs will be populated here by JS -->
-                    </div>
-                </div>
-
-                <!-- Incident List -->
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2 pb-1 border-b border-gray-300">Einsatz-Übersicht</h3>
-                    <div id="offline-incident-report" class="space-y-3">
-                        <!-- Incidents will be populated here by JS -->
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
-    <!-- END: Offline Overlay -->
-
-    <!-- Incident Creation Modal -->
-    <div id="incident-creation-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center mb-4 flex-shrink-0">
-                <h2 class="text-2xl font-bold text-gray-900">Neuen Einsatz erstellen</h2>
-                <button id="close-incident-modal-btn" class="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Scrollable Content Area -->
-            <div class="overflow-y-auto">
-                <form id="dispatch-form" class="border-t pt-4 border-gray-200">
-                    
-                    <button type="button" id="add-incident-map-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded w-full text-sm transition duration-150 mb-3">
-                        Einsatz auf Karte hinzufügen (Pin-Tool)
-                    </button>
-
-                    <div class="mb-3 relative">
-                        <label for="address" class="block text-gray-700 text-sm font-bold mb-1">Adresse</label>
-                        <input type="text" id="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Adresse eingeben (z.B. Am Wall 1)" autocomplete="off">
-                        
-                        <input type="hidden" id="lat-input" value="">
-                        <input type="hidden" id="lon-input" value="">
-
-                        <div id="address-suggestions" class="absolute z-20 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg hidden max-h-60 overflow-y-auto"></div>
-                    </div>
-                    <div class="mb-3 relative">
-                        <label for="keyword" class="block text-gray-700 text-sm font-bold mb-1">Alarmstichwort</label>
-                        <input type="text" id="keyword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="z.B. TH - Ast / Baum droht zu fallen" required autocomplete="off">
-                        
-                        <!-- Autocomplete Suggestions Container -->
-                        <div id="keyword-suggestions" class="absolute z-20 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg hidden max-h-80 overflow-y-auto"></div>
-                    </div>
-                    
-                    <!-- AUTOMATIC ASSIGNMENT DISPLAY -->
-                    <div class="mb-4 p-2 bg-gray-100 rounded-md border border-dashed border-gray-300">
-                        <p class="text-xs font-bold text-gray-700">Automatische EA-Zuordnung:</p>
-                        <p id="auto-section-display" class="text-sm font-semibold text-gray-700">Wird nach Adresse bestimmt...</p>
-                        <input type="hidden" id="final-section-assignment" value="">
-                    </div>
-                    <!-- END AUTOMATIC ASSIGNMENT DISPLAY -->
-
-                    <button type="submit" id="submit-btn" class="bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline transition duration-150" disabled>
-                        Einsatz erstellen
-                    </button>
-                </form>
+        <!-- Mobile Nav Panel -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 nav-links">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-fire font-semibold bg-red-50 rounded-md">Startseite</a>
+                <a href="aktuelles.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Aktuelles</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Über uns</a>
+                <a href="dienstplan.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Dienstplan</a>
+                <a href="faq.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">FAQ</a>
             </div>
         </div>
-    </div>
-    <!-- END: Incident Creation Modal -->
+    </header>
 
-
-    <!-- Incident Edit Modal -->
-    <div id="incident-edit-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center mb-4 flex-shrink-0">
-                <h2 class="text-2xl font-bold text-gray-900">Einsatz bearbeiten</h2>
-                <button id="close-incident-edit-modal-btn" class="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                    </svg>
-                </button>
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative h-[600px] flex items-center justify-center hero-bg">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h1 class="font-serif font-bold text-4xl md:text-6xl text-white mb-6 tracking-tight">
+                    Modern Heroism.
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 font-light">
+                    Gemeinschaft, Technik und Verantwortung – Deine Zukunft bei der Jugendfeuerwehr.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="about.html"
+                        class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white bg-fire shadow-lg hover:bg-fire-dark hover:-translate-y-0.5 transition-all duration-200">
+                        Mehr erfahren
+                    </a>
+                    <a href="dienstplan.html"
+                        class="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-bold rounded-lg text-white hover:bg-white hover:text-gray-900 hover:-translate-y-0.5 transition-all duration-200">
+                        Zum Dienstplan
+                    </a>
+                </div>
             </div>
-            
-            <!-- Scrollable Content Area -->
-            <div class="overflow-y-auto">
-                <form id="incident-edit-form" class="border-t pt-4 border-gray-200 space-y-4">
-                    
-                    <button type="button" id="edit-incident-map-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded w-full text-sm transition duration-150">
-                        Neue Adresse von Karte wählen (Pin-Tool)
-                    </button>
+        </section>
 
-                    <div class="relative">
-                        <label for="edit-address" class="block text-gray-700 text-sm font-bold mb-1">Adresse</label>
-                        <input type="text" id="edit-address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Adresse eingeben... (z.B. 76351...)" autocomplete="off">
-                        
-                        <input type="hidden" id="edit-lat-input" value="">
-                        <input type="hidden" id="edit-lon-input" value="">
-
-                        <div id="edit-address-suggestions" class="absolute z-20 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg hidden max-h-60 overflow-y-auto"></div>
+        <!-- Info Bar -->
+        <section
+            class="bg-white border-b border-gray-100 relative z-20 -mt-8 mx-4 rounded-xl shadow-lg max-w-6xl lg:mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                <!-- Wann -->
+                <div
+                    class="p-6 flex flex-col items-center text-center group hover:bg-red-50 transition-colors first:rounded-t-xl md:first:rounded-l-xl md:first:rounded-tr-none">
+                    <div
+                        class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-3 text-fire group-hover:scale-110 transition-transform">
+                        <i data-lucide="clock" class="w-5 h-5"></i>
                     </div>
-                    <div class="relative">
-                        <label for="edit-keyword" class="block text-gray-700 text-sm font-bold mb-1">Alarmstichwort</label>
-                        <input type="text" id="edit-keyword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="z.B. Baum umgestürzt, Keller unter Wasser" required autocomplete="off">
-                        
-                        <div id="edit-keyword-suggestions" class="absolute z-20 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg hidden max-h-60 overflow-y-auto"></div>
-                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-900 mb-1">Wann?</h3>
+                    <p class="text-gray-600">Jeden Mittwoch<br>um 18:00 Uhr</p>
+                </div>
 
-                    <!-- Status Buttons -->
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Status</label>
-                        <input type="hidden" id="edit-status-hidden" value="">
-                        <div class="flex w-full rounded-md shadow-sm">
-                            <button type="button" id="edit-status-btn-open" data-status="open" class="edit-status-btn flex-1 py-2 px-4 text-sm font-medium rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500">
-                                Offen
-                            </button>
-                            <button type="button" id="edit-status-btn-dispatched" data-status="dispatched" class="edit-status-btn flex-1 py-2 px-4 text-sm font-medium border-t border-b border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500">
-                                Entsandt
-                            </button>
-                            <button type="button" id="edit-status-btn-completed" data-status="completed" class="edit-status-btn flex-1 py-2 px-4 text-sm font-medium rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500">
-                                Abgeschlossen
-                            </button>
+                <!-- Wo -->
+                <div class="p-6 flex flex-col items-center text-center group hover:bg-red-50 transition-colors">
+                    <div
+                        class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-3 text-fire group-hover:scale-110 transition-transform">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-900 mb-1">Wo?</h3>
+                    <p class="text-gray-600">Am Wall 1<br>Linkenheim-Hochstetten</p>
+                </div>
+
+                <!-- Wer -->
+                <div
+                    class="p-6 flex flex-col items-center text-center group hover:bg-red-50 transition-colors last:rounded-b-xl md:last:rounded-r-xl md:last:rounded-bl-none">
+                    <div
+                        class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-3 text-fire group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-900 mb-1">Wer?</h3>
+                    <p class="text-gray-600">Mädchen & Jungs<br>(9-17 Jahre)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-b-4 border-transparent hover:border-fire p-8 group">
+                        <div
+                            class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-fire transition-colors">
+                            <i data-lucide="truck"
+                                class="text-fire w-6 h-6 group-hover:text-white transition-colors"></i>
                         </div>
-                    </div>
-                    
-                    <!-- AUTOMATIC ASSIGNMENT DISPLAY -->
-                    <div class="p-2 bg-gray-100 rounded-md border border-dashed border-gray-300">
-                        <p class="text-xs font-bold text-gray-700">Automatische EA-Zuordnung:</p>
-                        <p id="edit-auto-section-display" class="text-sm font-semibold text-gray-700">Wird nach Adresse bestimmt...</p>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 mb-3">Technik erleben</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Lerne den Umgang mit modernen Feuerwehrfahrzeugen und Geräten. Wir zeigen dir, wie alles
+                            funktioniert!
+                        </p>
+                        <a href="about.html"
+                            class="inline-flex items-center text-fire font-semibold hover:text-fire-dark group-hover:translate-x-1 transition-transform">
+                            Mehr erfahren <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
                     </div>
 
-                    <hr class="my-2">
-                    
-                    <!-- Action Buttons -->
-                    <div class="flex justify-between items-center space-x-3">
-                        <button type="button" id="delete-incident-btn" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded transition duration-150 w-1/2">
-                            Einsatz Löschen
-                        </button>
-                        <button type="submit" id="save-incident-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 transition duration-150">
-                            Änderungen speichern
-                        </button>
+                    <!-- Card 2 -->
+                    <div
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-b-4 border-transparent hover:border-fire p-8 group">
+                        <div
+                            class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-fire transition-colors">
+                            <i data-lucide="users"
+                                class="text-fire w-6 h-6 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 mb-3">Starke Gemeinschaft</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Einer für alle, alle für einen. Bei uns zählt der Zusammenhalt und das Miteinander in der
+                            Gruppe.
+                        </p>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- END: Incident Edit Modal -->
 
-
-    <!-- End Shift Modal -->
-    <div id="end-shift-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-lg">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Schicht beenden & Bericht erstellen</h2>
-            
-            <div class="space-y-4">
-                <div>
-                    <label for="lagezeichner-input" class="block text-sm font-medium text-gray-700 mb-1">Lagezeichner (Nachname, Name)</label>
-                    <input type="text" id="lagezeichner-input" class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="z.B. Mustermann, Max">
+                    <!-- Card 3 -->
+                    <div
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-b-4 border-transparent hover:border-fire p-8 group">
+                        <div
+                            class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-fire transition-colors">
+                            <i data-lucide="calendar"
+                                class="text-fire w-6 h-6 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 mb-3">Mach mit!</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Du bist zwischen 9 und 17 Jahren alt? Dann komm vorbei! Wir freuen uns auf dich.
+                        </p>
+                        <a href="dienstplan.html"
+                            class="inline-flex items-center text-fire font-semibold hover:text-fire-dark group-hover:translate-x-1 transition-transform">
+                            Zum Dienstplan <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
+        </section>
+    </main>
 
-                <!-- Report Summary -->
-                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Zusammenfassung</h3>
-                    <ul class="space-y-1 text-sm text-gray-700">
-                        <li><strong>Einsätze Gesamt:</strong> <span id="report-stats-incidents" class="font-medium">...</span></li>
-                        <li><strong>Einsatzabschnitte:</strong> <span id="report-stats-eas" class="font-medium">...</span></li>
-                        <li><strong>Berichtsdatum:</strong> <span id="report-stats-date" class="font-medium">...</span></li>
+    <footer class="bg-soot text-white py-12 border-t-4 border-fire">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flame" class="text-fire h-6 w-6"></i>
+                        <span class="font-serif font-bold text-lg">JF Linkenheim-Hochstetten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Die Jugendfeuerwehr ist die Jugendabteilung der Freiwilligen Feuerwehr. Wir bereiten Jugendliche
+                        auf den aktiven Dienst vor.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-fire transition-colors" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Kontakt</h4>
+                    <p class="text-gray-400 text-sm mb-2">Feuerwehrhaus Linkenheim</p>
+                    <p class="text-gray-400 text-sm">Schulstraße 123<br>76351 Linkenheim-Hochstetten</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="impressum.html" class="hover:text-fire transition-colors">Impressum</a></li>
+                        <li><a href="datenschutz.html" class="hover:text-fire transition-colors">Datenschutz</a></li>
+                        <li><a href="rechtliches.html" class="hover:text-fire transition-colors">Rechtliches</a></li>
                     </ul>
                 </div>
-
-                <!-- Modal Buttons -->
-                <div class="flex justify-end space-x-3 mt-6">
-                    <button id="cancel-report-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-150">
-                        Abbrechen
-                    </button>
-                    <button id="create-report-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-150">
-                        Bericht erstellen & Herunterladen
-                    </button>
-                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                &copy; 2024 Jugendfeuerwehr Linkenheim-Hochstetten. Alle Rechte vorbehalten.
             </div>
         </div>
-    </div>
-    <!-- END: End Shift Modal -->
+    </footer>
 
-    <!-- EA Management Modal -->
-    <div id="ea-management-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center mb-4 flex-shrink-0">
-                <h2 class="text-2xl font-bold text-gray-900">Einsatzabschnitte verwalten</h2>
-                <button id="close-ea-modal-btn" class="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-            </div>
-            
-            <div id="ea-modal-content" class="overflow-y-auto space-y-4">
-                
-                <!-- EA Creation Form (Moved from sidebar) -->
-                <form id="section-form" class="space-y-3 p-4 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-lg font-bold text-gray-800">Neuen EA erstellen</h3>
-                    <div>
-                        <label for="section-name" class="block text-sm font-medium text-gray-700">Name des EA</label>
-                        <input type="text" id="section-name" class="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight text-sm" placeholder="z.B. Hochstetten (Ost)" required>
-                    </div>
-                    <div>
-                        <label for="section-responsible" class="block text-sm font-medium text-gray-700">Verantwortlicher</label>
-                        <input type="text" id="section-responsible" class="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight text-sm" placeholder="EAL Nachname, Name" required>
-                    </div>
-                    <div>
-                        <label for="section-color" class="block text-sm font-medium text-gray-700">Farbe</label>
-                        <input type="color" id="section-color" class="mt-1 shadow appearance-none border rounded w-full h-10" value="#4f46e5">
-                    </div>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded w-full text-sm transition duration-150">
-                        EA erstellen
-                    </button>
-                </form>
-
-                <!-- EA List (Moved from sidebar) -->
-                <div class="space-y-4">
-                     <h3 class="text-lg font-bold text-gray-800">Bestehende EAs</h3>
-                    <div id="section-list" class="space-y-3 text-sm">
-                        <!-- Section cards will be dynamically inserted here -->
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- END: EA Management Modal -->
-    
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed top-8 right-8 z-[7000] w-full max-w-xs sm:max-w-md space-y-3">
-        <!-- Toasts will be dynamically added here -->
-    </div>
-    
-    <!-- Utility Panels (Map Interaction) -->
-    
-    <!-- EA Drawing Panel -->
-    <div id="section-draw-panel" class="fixed bottom-8 right-8 z-[1000] p-4 bg-red-100 text-red-700 rounded-lg hidden shadow-xl w-72">
-        <p class="font-bold mb-2">EA-Zeichenmodus aktiv</p>
-        <p class="text-sm">Klicken Sie auf die Karte, um Punkte hinzuzufügen.</p>
-        <p class="text-sm mt-1">Klicken Sie auf Punkte, um sie zu löschen.</p>
-        <div class="flex mt-3 space-x-2">
-            <button id="finish-draw-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded flex-grow text-sm">
-                Zeichnen beenden
-            </button>
-            <button id="cancel-draw-btn" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-3 rounded flex-grow text-sm">
-                Abbrechen
-            </button>
-        </div>
-    </div>
-
-    <!-- Incident Add Panel -->
-    <div id="incident-add-panel" class="fixed bottom-8 right-8 z-[1000] p-4 bg-blue-100 text-blue-700 rounded-lg hidden shadow-xl w-72">
-        <p class="font-bold mb-1">Einsatz-Hinzufügen-Modus</p>
-        <p class="text-sm">Klicken Sie auf die Karte, um die Adresse zu füllen.</p>
-        <div class="flex mt-2 space-x-2">
-            <button type="button" id="cancel-add-incident-btn" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-2 rounded w-full text-xs">
-                Abbrechen
-            </button>
-        </div>
-    </div>
-    
-    <!-- Incident Edit Panel (for map pin) -->
-    <div id="incident-edit-panel" class="fixed bottom-8 right-8 z-[1000] p-4 bg-yellow-100 text-yellow-800 rounded-lg hidden shadow-xl w-72">
-        <p class="font-bold mb-1">Einsatz-Bearbeiten-Modus</p>
-        <p class="text-sm">Klicken Sie auf die Karte, um die Adresse zu ändern.</p>
-        <div class="flex mt-2 space-x-2">
-            <button type="button" id="cancel-edit-incident-btn" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-2 rounded w-full text-xs">
-                Abbrechen
-            </button>
-        </div>
-    </div>
-    
-    <!-- Application Scripts -->
-    <script type="module" src="report_template.js"></script>
-    <script type="module" src="app.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

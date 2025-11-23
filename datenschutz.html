@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <i data-lucide="flame" class="text-fire h-10 w-10 transition-transform group-hover:scale-110"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-serif font-bold text-xl text-gray-900 leading-none uppercase">Jugendfeuerwehr</span>
+                        <span
+                            class="font-sans text-sm text-gray-500 font-medium uppercase">Linkenheim-Hochstetten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-fire transition-colors">Startseite</a>
+                    <a href="aktuelles.html" class="text-gray-600 hover:text-fire transition-colors">Aktuelles</a>
+                    <a href="about.html" class="text-gray-600 hover:text-fire transition-colors">Über uns</a>
+                    <a href="dienstplan.html" class="text-gray-600 hover:text-fire transition-colors">Dienstplan</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-fire transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Panel -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 nav-links">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Startseite</a>
+                <a href="aktuelles.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Aktuelles</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Über uns</a>
+                <a href="dienstplan.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Dienstplan</a>
+                <a href="faq.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <section class="bg-soot text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="font-serif font-bold text-4xl mb-4">Datenschutzerklärung</h1>
+                <p class="text-xl text-gray-400">Informationen zum Umgang mit Ihren Daten</p>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <div class="space-y-8">
+
+                <!-- Section 1 -->
+                <div class="bg-white rounded-xl shadow-sm p-8 md:p-10 border-l-4 border-fire">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 mb-6 flex items-center gap-3">
+                        <span
+                            class="bg-red-100 text-fire w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                        Datenschutz auf einen Blick
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-2">Allgemeine Hinweise</h3>
+                            <p class="text-gray-600 leading-relaxed">Die folgenden Hinweise geben einen einfachen
+                                Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese
+                                Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich
+                                identifiziert werden können.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-2">Datenerfassung auf dieser Website</h3>
+                            <div class="bg-gray-50 p-4 rounded-lg space-y-4">
+                                <div>
+                                    <p class="font-semibold text-gray-900">Wer ist verantwortlich für die Datenerfassung
+                                        auf dieser Website?</p>
+                                    <p class="text-gray-600">Die Datenverarbeitung auf dieser Website erfolgt durch den
+                                        Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website
+                                        entnehmen.</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Wie erfassen wir Ihre Daten?</p>
+                                    <p class="text-gray-600">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns
+                                        diese mitteilen (z. B. Kontaktformular). Andere Daten werden automatisch beim
+                                        Besuch der Website durch unsere IT-Systeme erfasst (z. B. Browser,
+                                        Betriebssystem).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="bg-white rounded-xl shadow-sm p-8 md:p-10 border-l-4 border-fire">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 mb-6 flex items-center gap-3">
+                        <span
+                            class="bg-red-100 text-fire w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                        Hosting
+                    </h2>
+
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-gray-900">GitHub Pages</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Wir hosten unsere Website bei GitHub Pages. Anbieter ist die GitHub Inc., 88 Colin P Kelly
+                            Jr St, San Francisco, CA 94107, USA (nachfolgend: GitHub).
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Wenn Sie unsere Website besuchen, erfasst GitHub verschiedene Logfiles inklusive Ihrer
+                            IP-Adressen. Weitere Details entnehmen Sie der Datenschutzerklärung von GitHub:<br>
+                            <a href="https://docs.github.com/en/github/site-policy/github-privacy-statement"
+                                target="_blank" rel="noopener noreferrer"
+                                class="text-fire hover:underline break-all">https://docs.github.com/en/github/site-policy/github-privacy-statement</a>.
+                        </p>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                            <p class="text-sm text-blue-800">
+                                <strong>Rechtsgrundlage:</strong> Die Verwendung von GitHub Pages erfolgt auf Grundlage
+                                von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst
+                                zuverlässigen Darstellung unserer Website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="bg-white rounded-xl shadow-sm p-8 md:p-10 border-l-4 border-fire">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 mb-6 flex items-center gap-3">
+                        <span
+                            class="bg-red-100 text-fire w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                        Allgemeine Hinweise
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-2">Datenschutz</h3>
+                            <p class="text-gray-600 leading-relaxed">Die Betreiber dieser Seiten nehmen den Schutz Ihrer
+                                persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich
+                                und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser
+                                Datenschutzerklärung.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-2">Verantwortliche Stelle</h3>
+                            <address class="not-italic bg-gray-50 p-4 rounded-lg text-gray-600">
+                                <strong>Freiwillige Feuerwehr Linkenheim-Hochstetten</strong><br>
+                                Jugendfeuerwehr<br>
+                                Schulstraße 123<br>
+                                76351 Linkenheim-Hochstetten<br><br>
+                                E-Mail: <a href="mailto:info@jugendfeuerwehr-liho.de"
+                                    class="text-fire hover:underline">info@jugendfeuerwehr-liho.de</a>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="bg-white rounded-xl shadow-sm p-8 md:p-10 border-l-4 border-fire">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 mb-6 flex items-center gap-3">
+                        <span
+                            class="bg-red-100 text-fire w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                        Datenerfassung & Tools
+                    </h2>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-2">Cookies</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien
+                                und richten auf Ihrem Endgerät keinen Schaden an.
+                                Wir verwenden technisch notwendige Cookies, um Ihre Einwilligung zur Cookie-Nutzung zu
+                                speichern (Consent-Cookie).
+                            </p>
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                                <p class="text-sm text-blue-800">
+                                    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse
+                                    an fehlerfreier Bereitstellung).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border-t pt-6">
+                            <h3 class="font-bold text-gray-900 mb-2">Externe Dienste (CDNs)</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                Diese Seite nutzt zur Darstellung von Symbolen, Schriftarten und Stylesheets externe
+                                Content Delivery Networks (CDNs):
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600 ml-4">
+                                <li>Google Web Fonts</li>
+                                <li>Tailwind CSS (cdn.tailwindcss.com)</li>
+                                <li>Lucide Icons (unpkg.com)</li>
+                            </ul>
+                            <p class="text-gray-600 leading-relaxed mt-4">
+                                Beim Aufruf der Seite lädt Ihr Browser die benötigten Dateien von diesen Servern.
+                                Hierdurch erlangen die Betreiber der Server Kenntnis darüber, dass über Ihre IP-Adresse
+                                diese Website aufgerufen wurde.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-soot text-white py-12 border-t-4 border-fire">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flame" class="text-fire h-6 w-6"></i>
+                        <span class="font-serif font-bold text-lg">JF Linkenheim-Hochstetten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Die Jugendfeuerwehr ist die Jugendabteilung der Freiwilligen Feuerwehr. Wir bereiten Jugendliche
+                        auf den aktiven Dienst vor.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-fire transition-colors" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Kontakt</h4>
+                    <p class="text-gray-400 text-sm mb-2">Feuerwehrhaus Linkenheim</p>
+                    <p class="text-gray-400 text-sm">Schulstraße 123<br>76351 Linkenheim-Hochstetten</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="impressum.html" class="hover:text-fire transition-colors">Impressum</a></li>
+                        <li><a href="datenschutz.html" class="text-fire font-bold">Datenschutz</a></li>
+                        <li><a href="rechtliches.html" class="hover:text-fire transition-colors">Rechtliches</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                &copy; 2024 Jugendfeuerwehr Linkenheim-Hochstetten. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

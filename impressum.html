@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <i data-lucide="flame" class="text-fire h-10 w-10 transition-transform group-hover:scale-110"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-serif font-bold text-xl text-gray-900 leading-none uppercase">Jugendfeuerwehr</span>
+                        <span
+                            class="font-sans text-sm text-gray-500 font-medium uppercase">Linkenheim-Hochstetten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-fire transition-colors">Startseite</a>
+                    <a href="aktuelles.html" class="text-gray-600 hover:text-fire transition-colors">Aktuelles</a>
+                    <a href="about.html" class="text-gray-600 hover:text-fire transition-colors">Über uns</a>
+                    <a href="dienstplan.html" class="text-gray-600 hover:text-fire transition-colors">Dienstplan</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-fire transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Panel -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 nav-links">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Startseite</a>
+                <a href="aktuelles.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Aktuelles</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Über uns</a>
+                <a href="dienstplan.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">Dienstplan</a>
+                <a href="faq.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-fire hover:bg-gray-50 rounded-md">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <section class="bg-soot text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="font-serif font-bold text-4xl mb-4">Impressum</h1>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire space-y-6">
+                <div>
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 mb-4">Angaben gemäß § 5 TMG</h2>
+                    <p class="text-gray-600">
+                        Freiwillige Feuerwehr Linkenheim-Hochstetten<br>
+                        Schulstraße 123<br>
+                        76351 Linkenheim-Hochstetten
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Vertreten durch:</h3>
+                    <p class="text-gray-600">
+                        Kommandant Max Mustermann<br>
+                        Jugendwart Erika Musterfrau
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Kontakt:</h3>
+                    <p class="text-gray-600">
+                        Telefon: +49 (0) 123 456789<br>
+                        E-Mail: info@feuerwehr-linkenheim-hochstetten.de
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Verantwortlich für den Inhalt nach § 55
+                        Abs. 2 RStV:</h3>
+                    <p class="text-gray-600">
+                        Erika Musterfrau<br>
+                        Schulstraße 123<br>
+                        76351 Linkenheim-Hochstetten
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-soot text-white py-12 border-t-4 border-fire">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flame" class="text-fire h-6 w-6"></i>
+                        <span class="font-serif font-bold text-lg">JF Linkenheim-Hochstetten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Die Jugendfeuerwehr ist die Jugendabteilung der Freiwilligen Feuerwehr. Wir bereiten Jugendliche
+                        auf den aktiven Dienst vor.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-fire transition-colors" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Kontakt</h4>
+                    <p class="text-gray-400 text-sm mb-2">Feuerwehrhaus Linkenheim</p>
+                    <p class="text-gray-400 text-sm">Schulstraße 123<br>76351 Linkenheim-Hochstetten</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="impressum.html" class="text-fire font-bold">Impressum</a></li>
+                        <li><a href="datenschutz.html" class="hover:text-fire transition-colors">Datenschutz</a></li>
+                        <li><a href="rechtliches.html" class="hover:text-fire transition-colors">Rechtliches</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                &copy; 2024 Jugendfeuerwehr Linkenheim-Hochstetten. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

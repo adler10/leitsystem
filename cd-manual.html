@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Identity | Jugendfeuerwehr Linkenheim-Hochstetten</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            light: '#ff4d4d',
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                        },
+                        soot: {
+                            DEFAULT: '#1a1a1a',
+                            light: '#2a2a2a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .swatch-card:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#cc0000 0.5px, transparent 0.5px), radial-gradient(#cc0000 0.5px, #ffffff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.05;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-fire selection:text-white">
+
+    <!-- SIDEBAR / NAVIGATION -->
+    <div class="flex min-h-screen flex-col md:flex-row">
+        <aside
+            class="w-full md:w-72 bg-soot text-white flex-shrink-0 md:fixed md:h-full z-50 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="p-8 border-b border-gray-800">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-fire p-2 rounded-lg">
+                            <i data-lucide="flame" class="text-white h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <span class="font-serif font-bold text-xl block leading-none">Brand Portal</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest">v1.0 System</span>
+                        </div>
+                    </div>
+                </div>
+                <nav class="p-4 space-y-1 text-sm font-medium">
+                    <a href="#intro"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white transition-all group">
+                        <i data-lucide="layout-dashboard"
+                            class="w-4 h-4 text-gray-500 group-hover:text-fire transition-colors"></i> Einleitung
+                    </a>
+                    <a href="#logo"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white transition-all group">
+                        <i data-lucide="shield"
+                            class="w-4 h-4 text-gray-500 group-hover:text-fire transition-colors"></i> Logo & Identität
+                    </a>
+                    <a href="#colors"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white transition-all group">
+                        <i data-lucide="palette"
+                            class="w-4 h-4 text-gray-500 group-hover:text-fire transition-colors"></i> Farben
+                    </a>
+                    <a href="#typography"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white transition-all group">
+                        <i data-lucide="type" class="w-4 h-4 text-gray-500 group-hover:text-fire transition-colors"></i>
+                        Typografie
+                    </a>
+                    <a href="#social"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white transition-all group">
+                        <i data-lucide="instagram"
+                            class="w-4 h-4 text-gray-500 group-hover:text-fire transition-colors"></i> Social Media
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-gray-800">
+                <a href="index.html"
+                    class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-all">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Zurück zur Website
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 md:ml-72 relative">
+            <div class="absolute inset-0 hero-pattern z-0 pointer-events-none fixed"></div>
+
+            <div class="max-w-5xl mx-auto p-8 md:p-16 relative z-10">
+
+                <!-- INTRO -->
+                <section id="intro" class="mb-32 pt-12">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-fire text-xs font-bold tracking-wide uppercase mb-8">
+                        <span class="w-2 h-2 rounded-full bg-fire animate-pulse"></span>
+                        Official Design System
+                    </div>
+                    <h1 class="text-6xl md:text-7xl font-serif font-black text-soot mb-8 leading-tight">
+                        Modern<br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-fire to-orange-600">Heroism.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed font-light">
+                        Dieses Design-System definiert den visuellen Auftritt der <strong
+                            class="text-soot font-semibold">Jugendfeuerwehr Linkenheim-Hochstetten</strong>.
+                        Wir transformieren das klassische Vereins-Image in eine dynamische, respektvolle und attraktive
+                        Marke.
+                    </p>
+                </section>
+
+                <!-- LOGO SECTION -->
+                <section id="logo" class="mb-32 scroll-mt-20">
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                        <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">01. Logo & Identität</h2>
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden mb-12">
+                        <div
+                            class="aspect-video flex items-center justify-center bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+                            <!-- Download Button -->
+                            <button onclick="downloadLogoPng()"
+                                class="absolute top-6 right-6 bg-white/90 hover:bg-white text-soot px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:shadow-md transition-all flex items-center gap-2 backdrop-blur-sm z-20 cursor-pointer">
+                                <i data-lucide="download" class="w-4 h-4"></i> Logo herunterladen (PNG)
+                            </button>
+                            <div class="absolute inset-0 hero-pattern opacity-20"></div>
+                            <!-- LOGO RECONSTRUCTION -->
+                            <div class="flex items-center gap-6 scale-150 transform relative z-10">
+                                <i data-lucide="flame" class="h-16 w-16 text-fire fill-fire/10"></i>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="font-serif font-bold text-3xl leading-none text-soot tracking-tight">JUGENDFEUERWEHR</span>
+                                    <span
+                                        class="font-sans text-xs font-bold text-gray-500 tracking-[0.45em] uppercase mt-1.5">Linkenheim-Hochstetten</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 border-t border-gray-100 bg-white">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div>
+                                    <h3 class="font-bold text-soot mb-2">Die Bildmarke</h3>
+                                    <p class="text-sm text-gray-500 leading-relaxed">Die Flamme symbolisiert Energie,
+                                        Leidenschaft und unsere Kernaufgabe. Sie steht links und führt den Blick.</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-soot mb-2">Die Wortmarke</h3>
+                                    <p class="text-sm text-gray-500 leading-relaxed">Gesetzt in <span
+                                            class="font-serif">Roboto Slab</span> für Stärke und Tradition.
+                                        "Jugendfeuerwehr" ist der Held.</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-soot mb-2">Der Claim</h3>
+                                    <p class="text-sm text-gray-500 leading-relaxed">Der Ortsname in <span
+                                            class="font-sans">Inter</span> bildet das fundamentale Fundament, modern und
+                                        klar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-green-50/50 p-8 rounded-xl border border-green-100">
+                            <h3 class="font-bold mb-4 text-green-700 flex items-center gap-2"><i
+                                    data-lucide="check-circle" class="w-5 h-5"></i> Do's</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></span>
+                                    Viel Whitespace um das Logo lassen. Es braucht Luft zum Atmen.
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></span>
+                                    Auf dunklen Hintergründen die weiße Text-Variante nutzen.
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></span>
+                                    Die Hierarchie zwischen Groß und Klein strikt beibehalten.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50/50 p-8 rounded-xl border border-red-100">
+                            <h3 class="font-bold mb-4 text-red-700 flex items-center gap-2"><i data-lucide="x-circle"
+                                    class="w-5 h-5"></i> Don'ts</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 flex-shrink-0"></span>
+                                    Das Logo niemals verzerren, stauchen oder kippen.
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 flex-shrink-0"></span>
+                                    Keine Schatten-Effekte oder Umrandungen hinzufügen.
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 flex-shrink-0"></span>
+                                    Farben nicht ändern (kein Blau, kein Grün).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- COLORS SECTION -->
+                <section id="colors" class="mb-32 scroll-mt-20">
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                        <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">02. Farbpalette</h2>
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <!-- Primary -->
+                        <div class="swatch-card cursor-pointer group" onclick="copyColor('#cc0000', 'Fire Red')">
+                            <div
+                                class="aspect-[4/5] rounded-2xl bg-fire shadow-xl mb-4 group-hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-end p-6 overflow-hidden">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                                <span
+                                    class="text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 relative z-10 flex items-center gap-2">
+                                    <i data-lucide="copy" class="w-4 h-4"></i> Kopieren
+                                </span>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <p class="font-bold text-soot">Fire Red</p>
+                                    <p class="font-mono text-xs text-gray-400">#cc0000</p>
+                                </div>
+                                <p class="text-xs text-gray-500">Primary Action, Brand Color</p>
+                            </div>
+                        </div>
+
+                        <!-- Dark -->
+                        <div class="swatch-card cursor-pointer group" onclick="copyColor('#1a1a1a', 'Soot Black')">
+                            <div
+                                class="aspect-[4/5] rounded-2xl bg-soot shadow-xl mb-4 group-hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-end p-6 overflow-hidden">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                                <span
+                                    class="text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 relative z-10 flex items-center gap-2">
+                                    <i data-lucide="copy" class="w-4 h-4"></i> Kopieren
+                                </span>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <p class="font-bold text-soot">Soot</p>
+                                    <p class="font-mono text-xs text-gray-400">#1a1a1a</p>
+                                </div>
+                                <p class="text-xs text-gray-500">Backgrounds, Text</p>
+                            </div>
+                        </div>
+
+                        <!-- Hover -->
+                        <div class="swatch-card cursor-pointer group" onclick="copyColor('#990000', 'Dark Fire')">
+                            <div
+                                class="aspect-[4/5] rounded-2xl bg-fire-dark shadow-xl mb-4 group-hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-end p-6 overflow-hidden">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                                <span
+                                    class="text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 relative z-10 flex items-center gap-2">
+                                    <i data-lucide="copy" class="w-4 h-4"></i> Kopieren
+                                </span>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <p class="font-bold text-soot">Dark Fire</p>
+                                    <p class="font-mono text-xs text-gray-400">#990000</p>
+                                </div>
+                                <p class="text-xs text-gray-500">Hover States, Active</p>
+                            </div>
+                        </div>
+
+                        <!-- Neutral -->
+                        <div class="swatch-card cursor-pointer group" onclick="copyColor('#f9fafb', 'Cool Gray')">
+                            <div
+                                class="aspect-[4/5] rounded-2xl bg-gray-50 border border-gray-200 shadow-sm mb-4 group-hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-end p-6 overflow-hidden">
+                                <span
+                                    class="text-soot font-bold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 relative z-10 flex items-center gap-2">
+                                    <i data-lucide="copy" class="w-4 h-4"></i> Kopieren
+                                </span>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <p class="font-bold text-soot">Cool Gray</p>
+                                    <p class="font-mono text-xs text-gray-400">#f9fafb</p>
+                                </div>
+                                <p class="text-xs text-gray-500">Sections, Backgrounds</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TYPOGRAPHY SECTION -->
+                <section id="typography" class="mb-32 scroll-mt-20">
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                        <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">03. Typografie</h2>
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Serif -->
+                        <div
+                            class="bg-white rounded-2xl border border-gray-100 p-8 md:p-12 shadow-sm flex flex-col md:flex-row gap-12 items-start">
+                            <div class="w-48 flex-shrink-0">
+                                <span class="text-8xl font-serif font-bold text-soot leading-none block mb-4">Aa</span>
+                                <h3 class="font-bold text-xl text-soot">Roboto Slab</h3>
+                                <p class="text-sm text-gray-500 mt-1">Google Fonts</p>
+                                <div class="flex gap-2 mt-4">
+                                    <span class="px-2 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600">Bold
+                                        700</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded text-xs font-black text-gray-600">Black
+                                        900</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="border-b border-gray-100 pb-8 mb-8">
+                                    <p class="text-xs font-bold text-fire uppercase tracking-widest mb-4">Headlines &
+                                        Display</p>
+                                    <h1 class="font-serif font-bold text-5xl text-soot mb-4">Gemeinschaft erleben.</h1>
+                                    <h2 class="font-serif font-bold text-3xl text-soot mb-4">Die Helden von Morgen.</h2>
+                                    <h3 class="font-serif font-bold text-2xl text-fire">Technik, die begeistert.</h3>
+                                </div>
+                                <p class="text-sm text-gray-500">
+                                    Roboto Slab ist unsere Stimme für Überschriften. Sie ist markant, technisch und doch
+                                    menschlich. Wir nutzen sie ausschließlich in <strong>Bold</strong> oder
+                                    <strong>Black</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Sans -->
+                        <div
+                            class="bg-white rounded-2xl border border-gray-100 p-8 md:p-12 shadow-sm flex flex-col md:flex-row gap-12 items-start">
+                            <div class="w-48 flex-shrink-0">
+                                <span class="text-8xl font-sans font-normal text-soot leading-none block mb-4">Aa</span>
+                                <h3 class="font-bold text-xl text-soot">Inter</h3>
+                                <p class="text-sm text-gray-500 mt-1">Google Fonts</p>
+                                <div class="flex gap-2 mt-4">
+                                    <span class="px-2 py-1 bg-gray-100 rounded text-xs font-light text-gray-600">Light
+                                        300</span>
+                                    <span
+                                        class="px-2 py-1 bg-gray-100 rounded text-xs font-normal text-gray-600">Regular
+                                        400</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600">Bold
+                                        600</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="border-b border-gray-100 pb-8 mb-8">
+                                    <p class="text-xs font-bold text-fire uppercase tracking-widest mb-4">Body & UI</p>
+                                    <p class="font-sans text-gray-600 text-lg leading-relaxed mb-6">
+                                        Bei der Jugendfeuerwehr lernen wir Verantwortung und Technik. Wir sind ein Team,
+                                        das zusammenhält. Das ist ein Beispieltext für den Fließtext auf der Webseite,
+                                        der gut lesbar und modern wirkt.
+                                    </p>
+                                    <div class="flex gap-4">
+                                        <button
+                                            class="bg-fire text-white px-6 py-2.5 rounded-lg font-sans font-semibold text-sm shadow-lg shadow-fire/20">Primary
+                                            Button</button>
+                                        <button
+                                            class="bg-white border border-gray-200 text-gray-700 px-6 py-2.5 rounded-lg font-sans font-medium text-sm hover:bg-gray-50">Secondary</button>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-500">
+                                    Inter ist unser Arbeitspferd. Hochgradig lesbar, modern und neutral. Sie lässt den
+                                    Inhalt wirken und konkurriert nicht mit den Überschriften.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SOCIAL MEDIA GUIDE -->
+                <section id="social" class="mb-20 scroll-mt-20">
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                        <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">04. Social Media Guide
+                        </h2>
+                        <div class="h-px bg-gray-200 flex-1"></div>
+                    </div>
+
+                    <!-- Grid Layout for Social Media Guide -->
+                    <div class="space-y-16">
+
+                        <!-- Section 1: Post Templates -->
+                        <div>
+                            <h3 class="font-bold text-xl text-soot mb-6 flex items-center gap-2">
+                                <i data-lucide="layout-template" class="text-fire"></i> Post Templates
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <!-- Template 1: Action Post -->
+                                <div class="group cursor-pointer">
+                                    <div
+                                        class="aspect-square bg-gray-900 rounded-2xl overflow-hidden relative shadow-2xl mb-6 transform transition-all duration-500 group-hover:-translate-y-2">
+                                        <div
+                                            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563823251940-879b81c02c86?ixlib=rb-4.0.3')] bg-cover bg-center opacity-60 group-hover:scale-110 transition duration-700">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                                        </div>
+                                        <div class="absolute inset-0 p-8 flex flex-col justify-between">
+                                            <div class="flex justify-end">
+                                                <i data-lucide="flame" class="text-fire w-8 h-8 drop-shadow-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h3
+                                                    class="font-serif font-bold text-white text-4xl leading-none drop-shadow-xl">
+                                                    HELDEN<br>VON<br><span class="text-fire">MORGEN.</span></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="font-bold text-soot mb-1">Der Action Post</h4>
+                                    <p class="text-sm text-gray-500">Für Einsatzbilder und Übungen. Hoher Kontrast,
+                                        wenig Text.</p>
+                                </div>
+
+                                <!-- Template 2: Info Post -->
+                                <div class="group cursor-pointer">
+                                    <div
+                                        class="aspect-square bg-soot rounded-2xl overflow-hidden relative shadow-2xl mb-6 transform transition-all duration-500 group-hover:-translate-y-2 flex flex-col items-center justify-center text-center p-8 border border-gray-800">
+                                        <div
+                                            class="w-20 h-20 bg-fire rounded-2xl flex items-center justify-center mb-6 text-white shadow-lg shadow-fire/20 group-hover:scale-110 transition-transform duration-300">
+                                            <i data-lucide="calendar" class="w-10 h-10"></i>
+                                        </div>
+                                        <h3 class="font-serif font-bold text-white text-3xl mb-4 leading-tight">
+                                            NÄCHSTE<br>ÜBUNG</h3>
+                                        <div class="w-12 h-1.5 bg-fire rounded-full mb-4"></div>
+                                        <p class="text-gray-300 font-sans text-lg font-medium">Montag, 18:00 Uhr</p>
+                                        <p class="text-gray-500 font-sans text-sm mt-1">Feuerwehrhaus</p>
+                                    </div>
+                                    <h4 class="font-bold text-soot mb-1">Der Info Post</h4>
+                                    <p class="text-sm text-gray-500">Für Termine und Fakten. Clean, Icon-basiert,
+                                        Dunkel.</p>
+                                </div>
+
+                                <!-- Template 3: Story -->
+                                <div class="group cursor-pointer">
+                                    <div
+                                        class="aspect-[9/16] bg-fire rounded-2xl overflow-hidden relative shadow-2xl mx-auto w-2/3 lg:w-full p-8 flex flex-col text-center transform transition-all duration-500 group-hover:-translate-y-2">
+                                        <h3 class="font-serif font-bold text-white text-2xl mt-8 leading-tight">KOMM
+                                            ZUR<br>JUGENDFEUERWEHR</h3>
+                                        <div class="flex-grow flex items-center justify-center py-8">
+                                            <div class="relative w-full aspect-square">
+                                                <div class="absolute inset-0 bg-black/20 rounded-xl transform rotate-6">
+                                                </div>
+                                                <img src="https://images.unsplash.com/photo-1617169470602-b6a38139e68d?auto=format&fit=crop&w=400&q=60"
+                                                    class="w-full h-full object-cover rounded-xl rotate-3 shadow-lg border-4 border-white relative z-10">
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="bg-white text-fire font-bold py-4 rounded-xl text-sm mb-4 shadow-lg hover:bg-gray-50 transition-colors">
+                                            LINK IN BIO
+                                        </div>
+                                    </div>
+                                    <h4 class="font-bold text-soot mb-1 mt-6">Story Format (9:16)</h4>
+                                    <p class="text-sm text-gray-500">Vollflächig Rot für maximale Aufmerksamkeit.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Content Guide -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <!-- Bildsprache -->
+                            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                                <h3 class="font-bold text-xl text-soot mb-4 flex items-center gap-2">
+                                    <i data-lucide="camera" class="text-fire"></i> Bildsprache & Tonalität
+                                </h3>
+                                <ul class="space-y-4 text-sm text-gray-600">
+                                    <li class="flex gap-3">
+                                        <span class="font-bold text-soot min-w-[80px]">Authentisch:</span>
+                                        <span>Keine gestellten Szenen wenn möglich. Wir zeigen echte Emotionen, echten
+                                            Schweiß und echten Spaß.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="font-bold text-soot min-w-[80px]">Dynamisch:</span>
+                                        <span>Bilder aus der Bewegung heraus. Niedrige Perspektiven (Froschperspektive)
+                                            für heldenhafte Wirkung.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="font-bold text-soot min-w-[80px]">Sprache:</span>
+                                        <span>Wir sind professionell aber locker. Wir duzen unsere Zielgruppe. Emojis
+                                            nutzen wir sparsam aber passend (🔥, 🚒, 💪).</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Hashtags & Reels -->
+                            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                                <h3 class="font-bold text-xl text-soot mb-4 flex items-center gap-2">
+                                    <i data-lucide="hash" class="text-fire"></i> Hashtags & Video
+                                </h3>
+                                <div class="mb-6">
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Offizielle
+                                        Hashtags</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-mono">#jugendfeuerwehr</span>
+                                        <span
+                                            class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-mono">#linkenheimhochstetten</span>
+                                        <span
+                                            class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-mono">#heldenvonmorgen</span>
+                                        <span
+                                            class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-mono">#112</span>
+                                        <span
+                                            class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-mono">#feuerwehr</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Reels &
+                                        TikTok</p>
+                                    <p class="text-sm text-gray-600">
+                                        Kurze, knackige Schnitte. Musik muss im Takt sein. Trends nutzen, aber immer mit
+                                        Feuerwehr-Bezug. Hochformat (9:16) ist Pflicht.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast"
+        class="fixed bottom-8 right-8 bg-soot text-white px-6 py-4 rounded-xl shadow-2xl hidden flex items-center gap-4 z-50 border border-gray-800 transform transition-all duration-300">
+        <div class="bg-green-500/20 p-2 rounded-lg">
+            <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+        </div>
+        <div>
+            <span class="font-bold text-sm block mb-0.5">In die Zwischenablage kopiert!</span>
+            <span class="text-xs text-gray-400 font-mono" id="toast-text">#000000</span>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function copyColor(hex, name) {
+            navigator.clipboard.writeText(hex).then(() => {
+                const toast = document.getElementById('toast');
+                const toastText = document.getElementById('toast-text');
+
+                toastText.innerText = `${name} (${hex})`;
+                toast.classList.remove('hidden');
+                toast.classList.add('toast');
+
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                    toast.classList.remove('toast');
+                }, 3000);
+            });
+        }
+
+        function downloadLogoPng() {
+            try {
+                // Inlined SVG to bypass CORS/local file restrictions
+                // Increased viewBox width to 500 to prevent text clipping
+                // Adjusted flame position to prevent glitching
+                const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="500" viewBox="0 0 500 100">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;family=Roboto+Slab:wght@700&amp;display=swap');
+    .text-title { font-family: 'Roboto Slab', serif; font-weight: 700; fill: #1a1a1a; font-size: 34px; }
+    .text-subtitle { font-family: 'Inter', sans-serif; font-weight: 700; fill: #6b7280; font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase; }
+    .flame { fill: rgba(204, 0, 0, 0.1); stroke: #cc0000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  
+  <!-- Flame Icon (Scaled and Positioned) -->
+  <g transform="translate(15, 15) scale(2.8)">
+    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.1.243-2.143.7-3.1 1.1 1.1 2.8 2.6 2.8 3.6Z" class="flame"/>
+  </g>
+
+  <!-- Text -->
+  <text x="90" y="60" class="text-title">JUGENDFEUERWEHR</text>
+  <text x="92" y="80" class="text-subtitle">Linkenheim-Hochstetten</text>
+</svg>`;
+
+                const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    // Set canvas to high resolution (matching the modified SVG width/height)
+                    canvas.width = 2500;
+                    canvas.height = 500;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                    try {
+                        const pngUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = pngUrl;
+                        a.download = 'jf-logo.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    } catch (e) {
+                        alert("Fehler beim Erstellen des PNGs. Möglicherweise blockiert der Browser die Canvas-Konvertierung.");
+                        console.error(e);
+                    }
+                };
+                img.onerror = (e) => {
+                    alert("Fehler beim Laden des Logos für die Konvertierung.");
+                    console.error(e);
+                };
+                img.src = url;
+
+            } catch (e) {
+                alert("Ein unerwarteter Fehler ist aufgetreten.");
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+
+</html>

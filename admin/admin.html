@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: {
+                            DEFAULT: '#cc0000',
+                            dark: '#990000',
+                            light: '#ff4d4d',
+                        },
+                        soot: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-soot text-white py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <i data-lucide="shield" class="text-fire h-6 w-6"></i>
+            <span class="font-serif font-bold text-xl">JF Admin</span>
+        </div>
+        <a href="../index.html" class="text-gray-400 hover:text-white text-sm flex items-center gap-1">
+            <i data-lucide="log-out" class="w-4 h-4"></i> Zur Website
+        </a>
+    </header>
+
+    <main class="flex-grow p-6 max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Dienstplan Editor -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 flex items-center gap-2">
+                        <i data-lucide="calendar" class="text-fire"></i> Dienstplan
+                    </h2>
+                    <button onclick="addDienstplanEntry()"
+                        class="bg-fire text-white px-4 py-2 rounded-lg hover:bg-fire-dark transition-colors flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Neu
+                    </button>
+                </div>
+                <div class="space-y-4 max-h-[600px] overflow-y-auto pr-2" id="dienstplan-list">
+                    <!-- Entries will be loaded here -->
+                </div>
+            </section>
+
+            <!-- News Editor -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-serif font-bold text-2xl text-gray-900 flex items-center gap-2">
+                        <i data-lucide="newspaper" class="text-fire"></i> Aktuelles
+                    </h2>
+                    <button onclick="addNewsEntry()"
+                        class="bg-fire text-white px-4 py-2 rounded-lg hover:bg-fire-dark transition-colors flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Neu
+                    </button>
+                </div>
+                <div class="space-y-4 max-h-[600px] overflow-y-auto pr-2" id="news-list">
+                    <!-- Entries will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Save Bar -->
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-sm text-gray-500">
+                <i data-lucide="info" class="inline w-4 h-4 mr-1"></i>
+                Änderungen werden erst wirksam, wenn du die Datei herunterlädst und im Projektordner speicherst.
+            </div>
+            <button onclick="downloadData()"
+                class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-bold flex items-center gap-2 shadow-md">
+                <i data-lucide="save" class="w-5 h-5"></i> Änderungen speichern (Download data.js)
+            </button>
+        </div>
+    </div>
+
+    <!-- Load Data -->
+    <script src="../data.js"></script>
+    <script>
+        // State
+        let currentData = {
+            news: [],
+            dienstplan: []
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.siteData) {
+                currentData = JSON.parse(JSON.stringify(window.siteData)); // Deep copy
+                renderDienstplan();
+                renderNews();
+            }
+            lucide.createIcons();
+        });
+
+        // Render Dienstplan
+        function renderDienstplan() {
+            const container = document.getElementById('dienstplan-list');
+            container.innerHTML = '';
+
+            // Sort by date
+            currentData.dienstplan.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            currentData.dienstplan.forEach((entry, index) => {
+                const div = document.createElement('div');
+                div.className = 'bg-gray-50 p-4 rounded-lg border border-gray-100 hover:border-fire transition-colors';
+                div.innerHTML = `
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Datum</label>
+                            <input type="date" value="${entry.date}" onchange="updateDienstplan(${index}, 'date', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Notizen</label>
+                            <input type="text" value="${entry.notes || ''}" onchange="updateDienstplan(${index}, 'notes', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border" placeholder="Optional">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Gruppe 1</label>
+                            <input type="text" value="${entry.group1 || ''}" onchange="updateDienstplan(${index}, 'group1', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Gruppe 2</label>
+                            <input type="text" value="${entry.group2 || ''}" onchange="updateDienstplan(${index}, 'group2', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Gruppe 3</label>
+                            <input type="text" value="${entry.group3 || ''}" onchange="updateDienstplan(${index}, 'group3', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Gruppe 4</label>
+                            <input type="text" value="${entry.group4 || ''}" onchange="updateDienstplan(${index}, 'group4', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="deleteDienstplan(${index})" class="text-red-600 hover:text-red-800 text-sm flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i> Löschen
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        // Render News
+        function renderNews() {
+            const container = document.getElementById('news-list');
+            container.innerHTML = '';
+
+            // Sort by date desc
+            currentData.news.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            currentData.news.forEach((entry, index) => {
+                const div = document.createElement('div');
+                div.className = 'bg-gray-50 p-4 rounded-lg border border-gray-100 hover:border-fire transition-colors';
+                div.innerHTML = `
+                    <div class="mb-4">
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Titel</label>
+                        <input type="text" value="${entry.title}" onchange="updateNews(${index}, 'title', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border font-bold">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Datum</label>
+                            <input type="date" value="${entry.date}" onchange="updateNews(${index}, 'date', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Bild URL</label>
+                            <input type="text" value="${entry.image || ''}" onchange="updateNews(${index}, 'image', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border" placeholder="https://...">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Vorschau-Text</label>
+                        <textarea onchange="updateNews(${index}, 'excerpt', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border h-20">${entry.excerpt || ''}</textarea>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="block text-xs font-medium text-gray-500">Inhalt (HTML erlaubt)</label>
+                            <details class="text-xs text-gray-500 relative group">
+                                <summary class="cursor-pointer hover:text-fire list-none flex items-center gap-1">
+                                    <i data-lucide="help-circle" class="w-3 h-3"></i> HTML Hilfe
+                                </summary>
+                                <div class="absolute right-0 bottom-6 w-64 bg-white p-3 rounded-lg shadow-xl border border-gray-200 z-10 text-xs">
+                                    <p class="font-bold mb-2 text-gray-900">Formatierungshilfe:</p>
+                                    <ul class="space-y-1 font-mono">
+                                        <li>&lt;b&gt;<b>Fett</b>&lt;/b&gt;</li>
+                                        <li>&lt;i&gt;<i>Kursiv</i>&lt;/i&gt;</li>
+                                        <li>&lt;p&gt;Absatz&lt;/p&gt;</li>
+                                        <li>&lt;br&gt; (Zeilenumbruch)</li>
+                                        <li>&lt;ul&gt;&lt;li&gt;Liste&lt;/li&gt;&lt;/ul&gt;</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <textarea onchange="updateNews(${index}, 'content', this.value)" class="w-full rounded border-gray-300 text-sm p-1 border h-40 font-mono">${entry.content || ''}</textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="deleteNews(${index})" class="text-red-600 hover:text-red-800 text-sm flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i> Löschen
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        // Actions
+        function addDienstplanEntry() {
+            currentData.dienstplan.push({
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                group1: "Thema",
+                group2: "Thema",
+                group3: "Thema",
+                group4: "Thema",
+                notes: ""
+            });
+            renderDienstplan();
+        }
+
+        function deleteDienstplan(index) {
+            if (confirm('Wirklich löschen?')) {
+                currentData.dienstplan.splice(index, 1);
+                renderDienstplan();
+            }
+        }
+
+        function updateDienstplan(index, field, value) {
+            currentData.dienstplan[index][field] = value;
+        }
+
+        function addNewsEntry() {
+            currentData.news.push({
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                title: "Neuer Beitrag",
+                excerpt: "Beschreibung hier eingeben...",
+                content: "<p>Inhalt hier eingeben...</p>",
+                image: ""
+            });
+            renderNews();
+        }
+
+        function deleteNews(index) {
+            if (confirm('Wirklich löschen?')) {
+                currentData.news.splice(index, 1);
+                renderNews();
+            }
+        }
+
+        function updateNews(index, field, value) {
+            currentData.news[index][field] = value;
+        }
+
+        // Download
+        function downloadData() {
+            const content = `window.siteData = ${JSON.stringify(currentData, null, 4)};`;
+            const blob = new Blob([content], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data.js';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('Datei wurde heruntergeladen! Bitte ersetze die bestehende data.js in deinem Projektordner.');
+        }
+    </script>
+</body>
+
+</html>
