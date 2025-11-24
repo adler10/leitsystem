@@ -76,7 +76,7 @@
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('hidden')">
+                <button class="md:hidden text-gray-600 hover:text-fire focus:outline-none mobile-menu-btn">
                     <i data-lucide="menu" class="h-6 w-6"></i>
                 </button>
             </div>
@@ -132,61 +132,80 @@
             <!-- Feuerwehrhaus Section -->
             <div id="content-feuerwehrhaus" class="tab-content">
                 <div class="mb-20">
-                    <div class="text-center mb-12">
-                        <div class="flex items-center justify-center gap-3 mb-4">
-                            <i data-lucide="home" class="text-fire w-10 h-10"></i>
-                            <h2 class="font-serif font-bold text-4xl text-gray-900">Feuerwehrhaus Linkenheim</h2>
-                        </div>
-                        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    <!-- Unified Header Design -->
+                    <div class="text-center mb-16">
+                        <i data-lucide="home" class="text-fire w-12 h-12 mx-auto mb-4"></i>
+                        <h2 class="font-serif font-bold text-4xl text-gray-900 mb-4">Feuerwehrhaus Linkenheim</h2>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                             Unser modernes Feuerwehrhaus ist mehr als nur ein Abstellort für Fahrzeuge. Es ist Einsatzzentrale, 
-                            Ausbildungsstätte und Treffpunkt für Kameradschaft. Ausgestattet mit moderner Technik 
-                            sorgt es für einen reibungslosen Ablauf im Übungs- und Einsatzdienst.
+                            Ausbildungsstätte und Treffpunkt für Kameradschaft.
                         </p>
                     </div>
+                    
+                    <!-- Stats Bar -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto">
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">8</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Fahrzeugboxen</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">1</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Waschhalle</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">200m²</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Jugendraum</span>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">100%</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Einsatzbereit</span>
+                        </div>
+                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Detail Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="details-container">
                         <!-- Fahrzeughalle -->
-                        <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group col-span-1 md:col-span-2 lg:col-span-2">
+                        <div id="detail-halle" class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group col-span-1 md:col-span-2 lg:col-span-2">
                             <div class="flex items-start gap-5">
-                                <div class="bg-red-50 p-4 rounded-xl group-hover:bg-fire group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="truck" class="w-8 h-8 text-fire group-hover:text-white transition-colors"></i>
+                                <div class="bg-red-50 p-4 rounded-xl text-fire shrink-0 group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="truck" class="w-8 h-8"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-2xl text-gray-900 mb-3">Fahrzeughalle</h3>
+                                    <h3 class="font-serif font-bold text-2xl text-gray-900 mb-3 group-hover:text-fire transition-colors">Fahrzeughalle</h3>
                                     <p class="text-gray-600 leading-relaxed">
                                         Das Herzstück unseres Hauses. Hier stehen unsere Einsatzfahrzeuge jederzeit abfahrbereit. 
                                         Die Halle verfügt über eine moderne <strong>Abgasabsauganlage</strong>, die beim Starten der Motoren automatisch anläuft, 
-                                        sowie eine permanente Druckluft- und Ladeerhaltung für alle Fahrzeuge. Ein Monitor zeigt bei Alarmierung sofort das Einsatzstichwort an.
+                                        sowie eine permanente Druckluft- und Ladeerhaltung für alle Fahrzeuge.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Zentrale/Funkraum -->
-                         <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-blue-500 hover:shadow-md transition-all group">
+                         <div id="detail-admin" class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-blue-500 hover:shadow-md transition-all group">
                             <div class="flex items-start gap-4">
-                                <div class="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="radio" class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors"></i>
+                                <div class="bg-blue-50 p-3 rounded-lg text-blue-600 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                    <i data-lucide="radio" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Funkraum</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Funkraum</h3>
                                     <p class="text-gray-600 text-sm">
-                                        Die Kommunikationszentrale. Bei Flächenlagen (z.B. Unwetter) wird von hier aus koordiniert. Ausgestattet mit Funkgeräten, Telefonen und Einsatzführungssoftware.
+                                        Die Kommunikationszentrale. Bei Flächenlagen (z.B. Unwetter) wird von hier aus koordiniert. Ausgestattet mit Funkgeräten und Telefonen.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Jugendraum -->
-                        <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
+                        <div id="detail-social" class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
                             <div class="flex items-start gap-4">
-                                <div class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="gamepad-2" class="w-6 h-6 text-fire group-hover:text-white transition-colors"></i>
+                                <div class="bg-red-50 p-3 rounded-lg text-fire shrink-0 group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="gamepad-2" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Jugendraum</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-fire transition-colors">Jugendraum</h3>
                                     <p class="text-gray-600 text-sm">
-                                        Unser eigenes Reich. Ausgestattet mit gemütlichen Sofas, einem Tischkicker und Beamer für Filmabende. Hier verbringen wir die Zeit vor und nach den Übungen.
+                                        Unser eigenes Reich. Ausgestattet mit gemütlichen Sofas, einem Tischkicker und Beamer für Filmabende. Unser Treffpunkt.
                                     </p>
                                 </div>
                             </div>
@@ -195,13 +214,13 @@
                         <!-- Umkleide -->
                         <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
                             <div class="flex items-start gap-4">
-                                <div class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="shirt" class="w-6 h-6 text-fire group-hover:text-white transition-colors"></i>
+                                <div class="bg-red-50 p-3 rounded-lg text-fire shrink-0 group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="shirt" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Umkleide</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-fire transition-colors">Umkleide</h3>
                                     <p class="text-gray-600 text-sm">
-                                        Konsequente Schwarz-Weiß-Trennung verhindert Kontamination. Jeder Angehörige hat einen eigenen Spind für die persönliche Schutzausrüstung (PSA).
+                                        Konsequente Schwarz-Weiß-Trennung verhindert Kontamination. Jeder Angehörige hat einen eigenen Spind für die PSA.
                                     </p>
                                 </div>
                             </div>
@@ -210,26 +229,26 @@
                         <!-- Schulungsraum -->
                         <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-fire hover:shadow-md transition-all group">
                             <div class="flex items-start gap-4">
-                                <div class="bg-red-50 p-3 rounded-lg group-hover:bg-fire group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-fire group-hover:text-white transition-colors"></i>
+                                <div class="bg-red-50 p-3 rounded-lg text-fire shrink-0 group-hover:bg-fire group-hover:text-white transition-colors">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Schulungsraum</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-fire transition-colors">Schulungsraum</h3>
                                     <p class="text-gray-600 text-sm">
-                                        Ausgestattet mit moderner Medientechnik für den theoretischen Unterricht. Hier finden auch unsere Versammlungen und Winterunterrichte statt.
+                                        Ausgestattet mit moderner Medientechnik für den theoretischen Unterricht. Hier finden auch unsere Versammlungen statt.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Werkstatt -->
-                         <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-gray-500 hover:shadow-md transition-all group">
+                         <div id="detail-tech" class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-gray-500 hover:shadow-md transition-all group">
                             <div class="flex items-start gap-4">
-                                <div class="bg-gray-100 p-3 rounded-lg group-hover:bg-gray-600 group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="wrench" class="w-6 h-6 text-gray-600 group-hover:text-white transition-colors"></i>
+                                <div class="bg-gray-100 p-3 rounded-lg text-gray-600 shrink-0 group-hover:bg-gray-600 group-hover:text-white transition-colors">
+                                    <i data-lucide="wrench" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Werkstatt</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-gray-600 transition-colors">Werkstatt</h3>
                                     <p class="text-gray-600 text-sm">
                                         Hier reparieren unsere Gerätewarte defektes Material und warten Atemschutzgeräte sowie Schläuche nach den Einsätzen.
                                     </p>
@@ -240,11 +259,11 @@
                         <!-- Außenbereich -->
                          <div class="bg-white rounded-xl shadow-sm p-8 border-l-4 border-green-500 hover:shadow-md transition-all group lg:col-span-2">
                             <div class="flex items-start gap-4">
-                                <div class="bg-green-50 p-3 rounded-lg group-hover:bg-green-600 group-hover:text-white transition-colors shrink-0">
-                                    <i data-lucide="trees" class="w-6 h-6 text-green-600 group-hover:text-white transition-colors"></i>
+                                <div class="bg-green-50 p-3 rounded-lg text-green-600 shrink-0 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                    <i data-lucide="trees" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2">Hof & Außenbereich</h3>
+                                    <h3 class="font-serif font-bold text-xl text-gray-900 mb-2 group-hover:text-green-600 transition-colors">Hof & Außenbereich</h3>
                                     <p class="text-gray-600 text-sm">
                                         Der große Hof bietet viel Platz für Übungen "trocken" oder mit Wasser. Hier üben wir den Löschangriff, stellen Leitern auf oder führen Fahrzeugkunde durch, ohne den Straßenverkehr zu stören. Zudem gibt es einen Grillplatz für die Kameradschaftspflege im Sommer.
                                     </p>
@@ -259,9 +278,33 @@
             <!-- Fahrzeuge Section -->
             <div id="content-fahrzeuge" class="tab-content hidden">
                 <div>
-                    <div class="flex items-center gap-3 mb-8">
-                        <i data-lucide="truck" class="text-fire w-8 h-8"></i>
-                        <h2 class="font-serif font-bold text-3xl text-gray-900">Unsere Fahrzeuge</h2>
+                    <!-- Unified Header Design -->
+                    <div class="text-center mb-16">
+                        <i data-lucide="truck" class="text-fire w-12 h-12 mx-auto mb-4"></i>
+                        <h2 class="font-serif font-bold text-4xl text-gray-900 mb-4">Unsere Fahrzeuge</h2>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                             Von Großfahrzeugen bis zum Boot – hier ist unsere Technik, mit der wir üben und helfen.
+                        </p>
+                    </div>
+
+                    <!-- NEW STATS BAR FOR VEHICLES -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto">
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">8</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Fahrzeuge</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">3</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Anhänger</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">2</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Boote</span>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">100%</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Einsatzbereit</span>
+                        </div>
                     </div>
 
                     <!-- Jugendfeuerwehr Fahrzeuge (Highlighted) -->
@@ -658,6 +701,26 @@
                         </p>
                     </div>
 
+                    <!-- NEW STATS BAR FOR TEAM -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto">
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">40+</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Jugendliche</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">18</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Betreuer</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">100%</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Ehrenamt</span>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl text-center shadow-sm border border-gray-100">
+                            <span class="block text-2xl font-bold text-fire">24/7</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Motivation</span>
+                        </div>
+                    </div>
+
                     <!-- Leadership Section (Flatter Hierarchy) -->
                     <div class="mb-16">
                         <div class="flex items-center gap-3 mb-8 justify-center">
@@ -878,12 +941,24 @@
             const selectedContent = document.getElementById('content-' + tabId);
             if (selectedContent) {
                 selectedContent.classList.remove('hidden');
+                
+                // Re-trigger animations by removing and adding the animation class
+                const animatedElements = selectedContent.querySelectorAll('.animate-card');
+                animatedElements.forEach((el) => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; /* trigger reflow */
+                    el.style.animation = null; 
+                });
             }
 
             // 3. Handle Button Styling
             document.querySelectorAll('.tab-btn').forEach(btn => {
+                // Remove active classes
                 btn.classList.remove('text-fire');
+                
+                // Add inactive classes
                 btn.classList.add('text-gray-600');
+                btn.classList.add('hover:text-gray-800');
             });
 
             // If no button element passed (e.g. on resize/init), find it
@@ -892,7 +967,11 @@
             }
 
             if (btnElement) {
+                // Remove inactive classes
                 btnElement.classList.remove('text-gray-600');
+                btnElement.classList.remove('hover:text-gray-800');
+                
+                // Add active classes
                 btnElement.classList.add('text-fire');
                 
                 // 4. Animate the Sliding Pill
@@ -904,6 +983,17 @@
             // Re-initialize Lucide icons for new content
             if (window.lucide) {
                 lucide.createIcons();
+            }
+        }
+
+        // Simple scroll to detail function
+        function scrollToDetail(id) {
+            const el = document.getElementById('detail-' + id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight effect
+                el.classList.add('ring-4', 'ring-red-200');
+                setTimeout(() => el.classList.remove('ring-4', 'ring-red-200'), 1500);
             }
         }
         
