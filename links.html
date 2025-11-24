@@ -1,220 +1,315 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links - Jugendfeuerwehr Linkenheim-Hochstetten</title>
+    <title>Jugendfeuerwehr Li-Ho | Modern Heroism</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Script) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Roboto Slab (Headlines) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        fire: {
-                            DEFAULT: '#cc0000',
-                            dark: '#990000',
-                            light: '#ff4d4d',
-                        },
-                        soot: '#1a1a1a',
+                        'brand-red': '#cc0000',      /* Fire Red */
+                        'brand-dark-red': '#990000', /* Dark Fire */
+                        'brand-soot': '#1a1a1a',     /* Soot (Backgrounds) */
+                        'brand-gray': '#f9fafb',     /* Cool Gray */
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Roboto Slab', 'serif'],
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
+                        'slab': ['"Roboto Slab"', 'serif'],
+                        'sans': ['"Inter"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@700&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <style>
-        .link-card {
-            opacity: 0;
-            animation: fadeInUp 0.5s ease-out forwards;
+        body {
+            background-color: #1a1a1a; /* Brand Soot */
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }
+
+        /* Heroic Button Animation */
+        .hero-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
         
-        /* Staggered Delays */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .delay-600 { animation-delay: 600ms; }
-        .delay-700 { animation-delay: 700ms; }
-        .delay-800 { animation-delay: 800ms; }
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(204, 0, 0, 0.4); /* Red glow */
+            border-color: #cc0000;
+        }
 
-        /* Background Pattern */
-        .bg-pattern {
-            background: linear-gradient(to bottom, #ff4d4d, #cc0000);
+        /* The "Red Stripe" hover effect */
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background-color: #cc0000;
+            transition: width 0.3s ease;
+            z-index: 0;
+        }
+
+        .hero-btn:hover::before {
+            width: 8px; /* Accent stripe on hover */
+        }
+
+        /* Logo Construction */
+        .logo-text {
+            line-height: 1.1;
         }
     </style>
 </head>
+<body class="min-h-screen flex flex-col items-center selection:bg-brand-red selection:text-white pb-12">
 
-<body class="font-sans text-white bg-pattern min-h-screen flex flex-col items-center py-12 px-4">
+    <!-- Top Accent Line -->
+    <div class="w-full h-2 bg-brand-red shadow-[0_0_15px_rgba(204,0,0,0.6)]"></div>
 
-    <!-- Profile Section -->
-    <header class="text-center mb-8 link-card">
-        <div class="relative w-28 h-28 mx-auto mb-4">
-            <div class="relative w-full h-full bg-white rounded-full flex items-center justify-center border-4 border-white shadow-xl overflow-hidden">
-                <!-- Logo Image -->
-                <img src="logo.png" alt="Logo" class="w-20 h-auto object-contain">
+    <!-- Main Container -->
+    <div class="w-full max-w-lg px-6 pt-10 flex flex-col items-center z-10">
+
+        <!-- BRAND HEADER (Logo & Identity) -->
+        <div class="mb-10 text-center flex flex-col items-center">
+            
+            <!-- Logo Construction (Icon + Text) -->
+            <div class="flex items-center gap-3 mb-6">
+                <!-- Lucide Flame Icon -->
+                <div class="text-brand-red filter drop-shadow-[0_0_8px_rgba(204,0,0,0.5)]">
+                    <i data-lucide="flame" class="w-10 h-10 fill-current"></i>
+                </div>
+                
+                <div class="text-left logo-text">
+                    <h1 class="font-slab font-black text-2xl uppercase tracking-wide text-white">
+                        JUGENDFEUERWEHR
+                    </h1>
+                    <span class="font-sans font-light text-sm tracking-widest text-gray-400 uppercase">
+                        Linkenheim-Hochstetten
+                    </span>
+                </div>
             </div>
+
+            <!-- Profile Image (Circular with Red Border) -->
+            <div class="relative w-28 h-28 mb-4 group">
+                <div class="absolute inset-0 bg-brand-red rounded-full blur opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
+                <img 
+                    src="https://img.freepik.com/free-vector/firefighter-concept-illustration_114360-10493.jpg?w=740" 
+                    alt="Profilbild" 
+                    class="relative w-full h-full object-cover rounded-full border-2 border-brand-soot ring-2 ring-brand-red shadow-2xl"
+                >
+            </div>
+
+            <!-- Bio / Claim -->
+            <p class="text-gray-300 text-center font-sans font-normal max-w-xs leading-relaxed">
+                <span class="text-brand-red font-bold">Komm mach mit 😉</span><br>
+                Jeden Mittwoch um 18 Uhr<br>
+                <span class="text-white font-semibold">am Wall 1</span>
+            </p>
         </div>
-        
-        <h1 class="font-serif font-bold text-2xl mb-1 text-soot">Jugendfeuerwehr Li-Ho</h1>
-        <p class="text-soot text-sm font-medium">Komm mach mit 😉 Jeden<br>Mittwoch um 18 Uhr am Wall 1!</p>
-        
-        <!-- Social Icons Row -->
-        <div class="flex justify-center gap-6 mt-4 text-soot">
-            <a href="mailto:info@jugendfeuerwehr-liho.de" class="hover:scale-110 transition-transform">
-                <i data-lucide="mail" class="w-6 h-6"></i>
+
+        <!-- SOCIALS (Minimalist) -->
+        <div class="flex gap-8 mb-10 text-gray-400">
+            <!-- Mail (Obfuscated via JS to prevent simple scraping) -->
+            <a href="#" onclick="window.location.href='mailto:info@' + 'jfliho.de'; return false;" class="hover:text-white hover:scale-110 transition-transform duration-200">
+                <i data-lucide="mail" class="w-7 h-7"></i>
             </a>
-            <a href="https://instagram.com" target="_blank" class="hover:scale-110 transition-transform">
-                <i data-lucide="instagram" class="w-6 h-6"></i>
+            
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/jf_liho?igsh=dHFsc2F0aWowdXhq" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-transform duration-200">
+                <i data-lucide="instagram" class="w-7 h-7"></i>
             </a>
-            <a href="https://facebook.com" target="_blank" class="hover:scale-110 transition-transform">
-                <i data-lucide="facebook" class="w-6 h-6"></i>
+            
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/jugendfeuerwehrliho" target="_blank" class="hover:text-[#4267B2] hover:scale-110 transition-transform duration-200">
+                <i data-lucide="facebook" class="w-7 h-7"></i>
             </a>
         </div>
-    </header>
 
-    <!-- Links Section -->
-    <main class="w-full max-w-md space-y-3 flex-grow">
-        
-        <!-- Anmeldeschein -->
-        <a href="#" class="link-card delay-100 group flex items-center p-1 bg-white rounded-full hover:scale-[1.02] transition-transform duration-200 shadow-md">
-            <div class="w-10 h-10 flex items-center justify-center text-gray-600 shrink-0 ml-2">
-                <i data-lucide="file-text" class="w-6 h-6"></i>
-            </div>
-            <div class="flex-grow text-center pr-12">
-                <span class="text-gray-800 font-semibold text-base block">Anmeldeschein</span>
-                <span class="text-gray-400 text-xs uppercase tracking-wider block">Document</span>
-            </div>
-            <div class="w-10 flex justify-center text-gray-300">
-                <i data-lucide="more-vertical" class="w-4 h-4"></i>
-            </div>
-        </a>
+        <!-- LINKS SECTION -->
+        <div class="w-full flex flex-col gap-4">
 
-        <!-- Website -->
-        <a href="index.html" class="link-card delay-200 group flex items-center p-1 bg-white rounded-full hover:scale-[1.02] transition-transform duration-200 shadow-md">
-            <div class="w-10 h-10 flex items-center justify-center text-gray-600 shrink-0 ml-2">
-                <i data-lucide="globe" class="w-6 h-6"></i>
-            </div>
-            <div class="flex-grow text-center pr-12">
-                <span class="text-gray-800 font-semibold text-base">Website der JF Li-Ho</span>
-            </div>
-            <div class="w-10 flex justify-center text-gray-300">
-                <i data-lucide="more-vertical" class="w-4 h-4"></i>
-            </div>
-        </a>
-
-        <!-- Jugendbüro -->
-        <a href="tel:072479545620" class="link-card delay-300 group flex items-center p-1 bg-white rounded-full hover:scale-[1.02] transition-transform duration-200 shadow-md">
-            <div class="w-10 h-10 flex items-center justify-center text-gray-600 shrink-0 ml-2">
-                <i data-lucide="phone" class="w-6 h-6"></i>
-            </div>
-            <div class="flex-grow text-center pr-12">
-                <span class="text-gray-800 font-semibold text-base">Jugendbüro</span>
-            </div>
-            <div class="w-10 flex justify-center text-gray-300">
-                <i data-lucide="more-vertical" class="w-4 h-4"></i>
-            </div>
-        </a>
-
-        <!-- Anrufbeantworter -->
-        <a href="tel:072479545620" class="link-card delay-400 group flex items-center p-1 bg-white rounded-2xl hover:scale-[1.02] transition-transform duration-200 shadow-md h-16">
-            <div class="w-10 h-10 flex items-center justify-center text-gray-600 shrink-0 ml-2">
-                <i data-lucide="phone-off" class="w-6 h-6"></i>
-            </div>
-            <div class="flex-grow text-center pr-12">
-                <span class="text-gray-800 font-semibold text-base block">Anrufbeantworter zum</span>
-                <span class="text-gray-500 text-sm block">Entschuldigen</span>
-            </div>
-            <div class="w-10 flex justify-center text-gray-300">
-                <i data-lucide="more-vertical" class="w-4 h-4"></i>
-            </div>
-        </a>
-
-        <!-- Dienstplan Preview Card -->
-        <a href="dienstplan.html" class="link-card delay-500 block bg-white rounded-2xl overflow-hidden shadow-md hover:scale-[1.02] transition-transform duration-200 mt-4">
-            <div class="relative h-32 bg-gray-100 border-b border-gray-200 flex items-center justify-center overflow-hidden">
-                <!-- Mock Preview Image based on user screenshot style -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center opacity-50">
-                    <div class="w-full border-b border-gray-300 h-8"></div>
-                    <div class="w-full border-b border-gray-300 h-8"></div>
-                    <div class="w-full border-b border-gray-300 h-8"></div>
+            <!-- Primary Action: Anmeldeschein -->
+            <a href="links/anmeldeschein.pdf" target="_blank" class="hero-btn group relative w-full bg-[#262626] border border-gray-800 rounded-lg p-4 flex items-center">
+                <div class="z-10 w-12 flex justify-center text-gray-400 group-hover:text-brand-red transition-colors">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
                 </div>
-                <h3 class="font-serif font-bold text-xl text-gray-800 relative z-10">Dienstplan 2025</h3>
-            </div>
-            <div class="p-4 flex items-center">
-                <div class="flex-grow text-center pl-4">
-                    <span class="text-gray-800 font-semibold block">Dienstplan 2025/2</span>
-                    <span class="text-gray-400 text-xs uppercase tracking-wider">Document</span>
+                <div class="z-10 flex-1 border-l border-gray-800 pl-4 group-hover:border-gray-700 transition-colors">
+                    <h3 class="font-slab font-bold text-lg text-white">Anmeldeschein</h3>
+                    <p class="font-sans text-xs text-brand-red uppercase tracking-wider font-semibold">Download PDF</p>
                 </div>
-                <div class="w-6 text-gray-300">
-                    <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                <div class="z-10 pr-2 text-gray-600 group-hover:text-white transition-colors">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <!-- Map Card -->
-        <a href="https://goo.gl/maps/xyz" target="_blank" class="link-card delay-600 block bg-white rounded-2xl overflow-hidden shadow-md hover:scale-[1.02] transition-transform duration-200">
-            <div class="relative h-48 bg-gray-200">
-                <!-- Map Placeholder Visual -->
-                <div class="absolute inset-0 bg-[url('https://mt1.google.com/vt/lyrs=m&x=137&y=89&z=9')] bg-cover opacity-50 grayscale"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <i data-lucide="map-pin" class="text-fire w-12 h-12 drop-shadow-lg fill-current"></i>
+            <!-- Link: Website -->
+            <a href="index.html" class="hero-btn group relative w-full bg-[#262626] border border-gray-800 rounded-lg p-4 flex items-center">
+                <div class="z-10 w-12 flex justify-center text-gray-400 group-hover:text-brand-red transition-colors">
+                    <i data-lucide="globe" class="w-6 h-6"></i>
                 </div>
-            </div>
-            <div class="p-3 text-center border-t border-gray-100">
-                <span class="text-gray-800 text-sm font-medium">Freiwillige Feuerwehr Linkenheim-Hochstetten</span>
-            </div>
-        </a>
+                <div class="z-10 flex-1 border-l border-gray-800 pl-4 group-hover:border-gray-700 transition-colors">
+                    <h3 class="font-sans font-semibold text-white">Website der JF Li-Ho</h3>
+                </div>
+                <div class="z-10 pr-2 text-gray-600 group-hover:text-white transition-colors">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+            </a>
 
-        <!-- 360 Tour -->
-        <a href="3d_model.html" class="link-card delay-700 group flex items-center p-1 bg-white rounded-2xl hover:scale-[1.02] transition-transform duration-200 shadow-md h-16">
-            <div class="w-10 h-10 flex items-center justify-center text-soot shrink-0 ml-2">
-                <span class="font-bold text-lg border-2 border-soot rounded-full w-8 h-8 flex items-center justify-center text-xs">360</span>
-            </div>
-            <div class="flex-grow text-center pr-12">
-                <span class="text-gray-800 font-semibold text-base block">Besuche virtuell</span>
-                <span class="text-gray-500 text-sm block">unser Feuerwehrhaus</span>
-            </div>
-            <div class="w-10 flex justify-center text-gray-300">
-                <i data-lucide="more-vertical" class="w-4 h-4"></i>
-            </div>
-        </a>
-
-        <!-- Join Button -->
-        <div class="link-card delay-800 pt-4 flex justify-center">
-            <button class="bg-white text-gray-900 px-6 py-3 rounded-full font-bold shadow-lg hover:bg-gray-50 transition-colors text-sm">
-                Tritt jf.liho auf Linktree bei
+            <!-- Contact Group (Obfuscated Phone Numbers) -->
+            <!-- Note: The href is generated on click to prevent scraping -->
+            
+            <button onclick="handlePhone('office')" class="hero-btn group relative w-full bg-[#262626] border border-gray-800 rounded-lg p-4 flex items-center text-left">
+                <div class="z-10 w-12 flex justify-center text-gray-400 group-hover:text-brand-red transition-colors">
+                    <i data-lucide="phone" class="w-6 h-6"></i>
+                </div>
+                <div class="z-10 flex-1 border-l border-gray-800 pl-4">
+                    <h3 class="font-sans font-semibold text-white">Jugendbüro</h3>
+                    <p class="text-xs text-gray-500">Anrufen</p>
+                </div>
             </button>
+
+            <button onclick="handlePhone('ab')" class="hero-btn group relative w-full bg-[#262626] border border-gray-800 rounded-lg p-4 flex items-center text-left">
+                <div class="z-10 w-12 flex justify-center text-gray-400 group-hover:text-brand-red transition-colors">
+                    <i data-lucide="voicemail" class="w-6 h-6"></i>
+                </div>
+                <div class="z-10 flex-1 border-l border-gray-800 pl-4">
+                    <h3 class="font-sans font-semibold text-white">Abmeldung</h3>
+                    <p class="text-xs text-gray-500">Anrufbeantworter</p>
+                </div>
+            </button>
+
+            <!-- VISUAL CARDS (Dienstplan & Map) -->
+            
+            <div class="mt-4 grid grid-cols-1 gap-4">
+                
+                <!-- Dienstplan Card -->
+                <a href="links/dienstplan.pdf" target="_blank" class="hero-btn group relative w-full h-48 rounded-xl overflow-hidden border border-gray-800">
+                    <!-- Background Image with Overlay -->
+                    <div class="absolute inset-0 bg-gray-800">
+                        <!-- Preview Image for PDF -->
+                        <img src="https://placehold.co/600x400/262626/white?text=Dienstplan+Vorschau" alt="Dienstplan" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500">
+                        <!-- Red Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-soot via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold tracking-widest uppercase bg-brand-red text-white rounded-sm">
+                                    Dokument
+                                </span>
+                                <h3 class="font-slab font-bold text-xl text-white leading-none mb-1">Dienstplan</h3>
+                                <p class="text-gray-400 text-sm">Download PDF</p>
+                            </div>
+                            <div class="text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                                <i data-lucide="download" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Map Card -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Am+Wall+1,+Linkenheim-Hochstetten" target="_blank" class="hero-btn group relative w-full h-48 rounded-xl overflow-hidden border border-gray-800">
+                    <div class="absolute inset-0 bg-gray-800">
+                        <img src="https://placehold.co/600x400/1e293b/64748b?text=Karte+Am+Wall+1" alt="Map" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-soot via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    
+                    <!-- Center Icon -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-brand-red drop-shadow-lg transform group-hover:-translate-y-3 transition-transform duration-300">
+                        <i data-lucide="map-pin" class="w-10 h-10 fill-current"></i>
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                        <h3 class="font-slab font-bold text-lg text-white leading-tight">Am Wall 1</h3>
+                        <p class="text-gray-400 text-xs">Linkenheim-Hochstetten</p>
+                    </div>
+                </a>
+                
+                <!-- 360 View Button -->
+                <a href="https://maps.app.goo.gl/45FzNG8YLzze88QR9" target="_blank" class="group relative w-full bg-brand-red hover:bg-brand-dark-red rounded-lg p-4 flex items-center justify-between transition-colors shadow-lg shadow-red-900/20">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="move-3d" class="w-7 h-7 text-white"></i>
+                        <div class="text-left">
+                            <h3 class="font-slab font-bold text-white uppercase tracking-wide">360° Tour</h3>
+                            <p class="font-sans text-xs text-red-200">Feuerwehrhaus</p>
+                        </div>
+                    </div>
+                    <div class="text-white transform group-hover:translate-x-1 transition-transform">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </div>
+                </a>
+
+            </div>
+
         </div>
 
-    </main>
+        <!-- FOOTER -->
+        <div class="mt-16 text-center opacity-40">
+            <div class="text-brand-red mb-2 flex justify-center">
+                 <i data-lucide="flame" class="w-6 h-6"></i>
+            </div>
+            <p class="text-[10px] uppercase tracking-[0.2em] font-sans text-gray-500">
+                Modern Heroism System v1.2
+            </p>
+        </div>
 
-    <footer class="mt-12 text-center link-card delay-800 pb-4">
-        <div class="w-12 h-1 bg-white/30 rounded-full mx-auto mb-4"></div>
-        <a href="index.html" class="text-white/80 text-xs font-medium hover:text-white transition-colors">linktr.ee</a>
-    </footer>
+    </div>
 
+    <!-- Initialize Lucide Icons -->
     <script>
         lucide.createIcons();
+
+        // Phone Number Obfuscation Logic
+        // We construct the number only on click to hide it from bots
+        function handlePhone(type) {
+            // Area code
+            const partA = "07247";
+            let partB = "";
+
+            if (type === 'office') {
+                // Jugendbüro: 9545621
+                partB = "9545621";
+            } else if (type === 'ab') {
+                // AB: 9545620
+                partB = "9545620";
+            }
+
+            if (partB !== "") {
+                window.location.href = "tel:" + partA + partB;
+            }
+        }
     </script>
 </body>
-
 </html>
